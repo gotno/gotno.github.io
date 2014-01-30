@@ -17,11 +17,11 @@
       </div>
       <p>I'm a software developer currently looking for work in the San Francisco Bay Area.</p>
 
-      <p>I apply to my life and my projects the simple criterion of "Does it work?" I am addicted to perspective, to looking at a problem from every conceivable direction in order to find a novel way of solving it, or at the least, an interesting new angle from which to ponder it.</p>
+      <p>I apply to my life and my projects the simple criterion of “Does it work?” I am addicted to perspective, to looking at a problem from every conceivable direction in order to find a novel way of solving it, or at the least, an interesting new angle from which to ponder it.</p>
 
       <p>What is important to me is getting things done, but also learning the ways I might go about getting them done most efficiently, and with the highest quality of final product. I am driven to not just solve complex problems, but to figure out how to solve them the best way that they can be solved.</p>
 
-      <p>When I'm not hacking away in the dark, you can find me playing my guitar or listening to music, wandering miles in the wilderness or on the streets, camera in hand, or sharing a good conversation over a good beer in a warm pub.</p>
+      <p>When I’m not hacking away in the dark, you can find me playing my guitar or listening to music, wandering miles in the wilderness or on the streets, camera in hand, or sharing a good conversation over a good beer in a warm pub.</p>
 
       <p><strong>Why not contact me today?</strong> <a href="floyd.will@gmail.com"> floyd.will@gmail.com</a></p>
     </div>
@@ -47,10 +47,10 @@
       <li> Classic arcade game built with JavaScript, rendering on an HTML5 canvas. Sweet particle effects.</li>
     </ul>
 
-    <h2>Knight's Travail</h2>
+    <h2>Knight’s Travail</h2>
     <a href="https://github.com/gotno/knight-s-travail">github link</a>
     <ul>
-      <li>Solved in Ruby. Implements an algorithmic search tree to discover a Knight's shortest possible path between any two points on a chessboard.</li>
+      <li>Solved in Ruby. Implements an algorithmic search tree to discover a Knight’s shortest possible path between any two points on a chessboard.</li>
     </ul>
   </div>
 </body>
