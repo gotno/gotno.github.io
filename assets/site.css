@@ -1,0 +1,85 @@
+@import '_reset.css';
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
+@import url(http://fonts.googleapis.com/css?family=Merriweather:400,700);
+
+h1, h2 {
+  font-family: 'Open Sans';
+}
+
+body {
+  font-family: 'Merriweather';
+}
+
+a {
+  text-decoration: none;
+  color: gray;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 3em;
+}
+
+.personal {
+  width: 45%;
+  float: left;
+}
+
+
+.story {
+  margin-top: 1em;
+
+  float: left;
+  clear: left;
+
+  .photo {
+    float: left;
+  }
+
+  .lede {
+    width: 100%;
+    font-weight: 600;
+    font-size: 1.4em;
+    text-align: center;
+    margin-bottom: 1.4em;
+  }
+
+  p {
+    margin-bottom: 1em;
+    line-height: 1.4em;
+  }
+}
+
+.projects {
+  float: right;
+  width: 53%;
+  margin-left: 2%;
+
+  h1 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+
+  h2 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: .4em;
+  }
+
+  ul {
+    margin-left: 1.4em;
+    margin-bottom: 1em;
+    margin-top: .4em;
+    list-style: disc;
+    li {
+      margin-bottom: .4em;
+      line-height: 1.4em;
+    }
+  }
+}
