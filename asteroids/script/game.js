@@ -5,7 +5,10 @@
     this.ctx = ctx;
     this.asteroids = [];
     this.interval = null;
-    this.ship = new Asteroids.Ship(Game.DIM_X/2, Game.DIM_Y/2);
+    this.ship = new Asteroids.Ship({
+      x: Game.DIM_X/2,
+      y: Game.DIM_Y/2,
+    }, ctx);
     this.bullets = [];
   };
 
@@ -32,7 +35,7 @@
     })
   };
 
-  // ** handle wrapping
+  // wrapping goes in here
   Game.prototype.move = function() {
     this.ship.move();
     var tempRoids = [];
@@ -41,10 +44,10 @@
     this.asteroids.forEach(function(asteroid) {
       asteroid.move();
 
-      if (((asteroid.xpos + asteroid.radius) < 0 ||
-           (asteroid.xpos - asteroid.radius) > Game.DIM_X) ||
-          ((asteroid.ypos + asteroid.radius) < 0 ||
-           (asteroid.ypos - asteroid.radius) > Game.DIM_Y)) {
+      if (((asteroid.pos.x + asteroid.radius) < 0 ||
+           (asteroid.pos.x - asteroid.radius) > Game.DIM_X) ||
+          ((asteroid.pos.y + asteroid.radius) < 0 ||
+           (asteroid.pos.y - asteroid.radius) > Game.DIM_Y)) {
       } else {
         tempRoids.push(asteroid);
       }
@@ -55,10 +58,10 @@
     this.bullets.forEach(function(bullet) {
       bullet.move();
 
-      if (((bullet.xpos + bullet.radius) < 0 ||
-           (bullet.xpos - bullet.radius) > Game.DIM_X) ||
-          ((bullet.ypos + bullet.radius) < 0 ||
-           (bullet.ypos - bullet.radius) > Game.DIM_Y)) {
+      if (((bullet.pos.x + bullet.radius) < 0 ||
+           (bullet.pos.x - bullet.radius) > Game.DIM_X) ||
+          ((bullet.pos.y + bullet.radius) < 0 ||
+           (bullet.pos.y - bullet.radius) > Game.DIM_Y)) {
       } else {
         tempBullets.push(bullet);
       }
