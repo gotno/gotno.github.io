@@ -12,10 +12,17 @@
     this.bullets = [];
   };
 
-  Game.prototype.addAsteroids = function(numAsteroids) {
+  Game.prototype.addAsteroids = function(numAsteroids, small, x, y) {
     for (var i = 0; i < numAsteroids; i++) {
-      this.asteroids.push(Asteroids.Asteroid.randomAsteroid(Game.DIM_X,
-                                                            Game.DIM_Y));
+      if (small) {
+        this.asteroids.push(Asteroids.Asteroid.randomAsteroid(Game.DIM_X,
+                                                              Game.DIM_Y,
+                                                              true,
+                                                              x, y));
+      } else {
+        this.asteroids.push(Asteroids.Asteroid.randomAsteroid(Game.DIM_X,
+                                                              Game.DIM_Y));
+      }
     }
   };
 
@@ -25,15 +32,15 @@
     ctx.fillStyle = Game.colors.bg;
     ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
-    this.ship.draw(ctx);
-
     this.asteroids.forEach(function(asteroid) {
       asteroid.draw(ctx);
     });
 
     this.bullets.forEach(function(bullet) {
       bullet.draw(ctx);
-    })
+    });
+
+    this.ship.draw(ctx);
   };
 
   Game.prototype.move = function() {
@@ -119,9 +126,9 @@
     var game = this;
     this.asteroids.forEach(function(asteroid, aIdx){
       if (asteroid.isCollidedWith(game.ship)) {
-        console.log("hit, over.");
+        //console.log("hit, over.");
         //alert("GAME OVER!!!!")
-        //game.stop();
+        game.stop();
       }
 
       if (game.bullets.length > 0) {
@@ -135,13 +142,22 @@
   };
 
   Game.prototype.fireBullet = function() {
-    var bullet = this.ship.fireBullet(this);
-    if (bullet){
-      this.bullets.push(bullet);
+    if (this.bullets.length < Game.MAX_BULLETS) {
+      var bullet = this.ship.fireBullet(this);
+      if (bullet){
+        this.bullets.push(bullet);
+      }
     }
   };
 
   Game.prototype.handleBulletHit = function(aIdx, bIdx) {
+    var asteroid = this.asteroids[aIdx];
+    var numNew = 1 + (Math.ceil(Math.random() * 2))
+    if (!asteroid.isSmall()) {
+      this.addAsteroids(numNew, true, asteroid.pos.x, asteroid.pos.y);
+    } else {
+      this.addAsteroids(numNew);
+    }
     this.asteroids.splice(aIdx, 1);
     this.bullets.splice(bIdx, 1);
   };
@@ -157,4 +173,5 @@
   Game.INTERVAL_MILLISECONDS = 30;
   Game.DIM_X = 640;
   Game.DIM_Y = 480;
+  Game.MAX_BULLETS = 3;
 })(this);

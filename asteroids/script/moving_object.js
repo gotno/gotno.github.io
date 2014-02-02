@@ -2,11 +2,12 @@
   var Asteroids = root.Asteroids = (root.Asteroids || {});
 
   var MovingObject = Asteroids.MovingObject = function(options) {
-    this.pos = options.pos || { x: 0, y: 0 };
-    this.vel = options.vel || { x: 0, y: 0 };
-    this.radius = options.radius || 0;
-    this.color = options.color || '#000000';
-    this.angle = Math.degToRad(options.angle || 0);
+    this.pos = options.pos;
+    this.vel = options.vel;
+    this.radius = options.radius;
+    this.angle = Math.degToRad(options.angle);
+
+    this.color = options.color;
   }
 
   MovingObject.prototype.move = function() {
