@@ -146,7 +146,7 @@ a:hover {
   margin-left: 1.4em;
   margin-bottom: 1em;
   margin-top: .4em;
-  list-style: disc;
+  list-style: none;
 }
 
 .projects ul li {
