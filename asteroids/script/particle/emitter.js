@@ -2,27 +2,49 @@
   var Asteroids = root.Asteroids = (root.Asteroids || {});
   
   var Emitter = Asteroids.Emitter = function(options) {
-    this.rate = options.rate || 80;
-    this.pos = options.pos || { x: 0, y: 0 };
-    this.angle = options.angle || 90;
-    this.angle = Math.degToRad(this.angle);
-    this.ctx = options.ctx;
+    var pointOpts = options.point;
+    Asteroids.Point.call(this, pointOpts);
+
+    this.eOpts = options.emitter;
+    this.pOpts = options.particles;
     
+    this.ctx = options.ctx;
     this.particles = [];
   };
+  Emitter.inherits(Asteroids.Point);
+  
 
   Emitter.prototype.emit = function() {
-    if ((Math.random() * 100) < this.rate) {
-      this.particles.push(new Asteroids.Particle({
-        pos: $.extend({}, this.pos),
-        vel: { x:  (Math.sin(this.angle + Math.degToRad(90)) * 6) + (Math.random() * 3 - 1.5),
-               y: (-Math.cos(this.angle + Math.degToRad(90)) * 6) + (Math.random() * 3 - 1.5)
-        },
-        color: '#cecece',
-        radius: Math.random() * 5 + 5,
-        lifespan: 25 + Math.random() * 5, 
-        friction: 0.8
-      }));
+    var eOpts = this.eOpts,
+        pOpts = this.pOpts;
+
+    if (Math.random() * 100 > eOpts.sputter) {
+      var numParticles = Emitter.wobbleValues(eOpts.rate).num;
+
+      for (var i = 0; i < numParticles; i++) {
+        var vel = {};
+        var wVel = Emitter.wobbleValues(eOpts.vel);
+        vel.x =  Math.sin(this.angle) * wVel.x;
+        vel.y = -Math.cos(this.angle) * wVel.y;
+        vel.decay = pOpts.vel.decay;
+
+        var radius = Emitter.wobbleValues(eOpts.radius);
+        radius.decay = pOpts.radius.decay;
+
+        var lifespan = Emitter.wobbleValues(eOpts.lifespan);
+        lifespan.span = Math.round(lifespan.span);
+
+        this.particles.push(new Asteroids.Particle({
+          pos: $.extend({}, this.pos),
+          vel: vel,
+          angle: pOpts.angle,
+          rotationSpeed: pOpts.rotationSpeed,
+          radius: radius,
+          lifespan: lifespan,
+          lifeline: pOpts.lifeline,
+          layers: pOpts.layers
+        }));
+      }
     }
   };
 
@@ -30,18 +52,52 @@
     var emitter = this;
 
     if (this.particles.length > 0) {
-      this.particles.forEach(function(particle) {
-        particle.decay();
-        particle.move();
-        particle.drawBg(emitter.ctx);
-      });
-      this.particles.forEach(function(particle, idx) {
-        particle.drawFg(emitter.ctx);
-        if (particle.lifespan <= 0) {
-          emitter.particles.splice(idx, 1);
-        }
-      });
+      for (var i = 0; i < this.pOpts.layers.length; i++) {
+        this.particles.forEach(function(particle, idx) {
+          particle.decay();
+          particle.move();
+          particle.draw(i, emitter.ctx);
+
+          if (i == emitter.pOpts.layers.length - 1) {
+            emitter.possibleDeath(idx);
+          }
+        });
+      }
     }
   };
 
+  Emitter.prototype.possibleDeath = function(idx) {
+    var particle = this.particles[idx];
+    var attr = particle.lifeline.attr;
+    var val = particle.lifeline.val;
+
+    if (particle[attr][val] == particle.lifeline.trigger) {
+      this.particles.splice(idx, 1);
+      return true;
+    }
+  };
+
+  Emitter.wobbleValues = function(vals) {
+    wobbledVals = {};
+
+    for (var key in vals) {
+      if (typeof vals[key] === 'object') continue;
+
+      switch (vals.wobble.weight) {
+      case -1:
+        wobbledVals[key] = vals[key] - Math.random() * vals.wobble.amt;
+        break;
+      case 0:
+        var amt = vals.wobble.amt;
+        wobbledVals[key] = vals[key]; 
+        wobbledVals[key] += ((Math.random() * amt) - (Math.random() * amt));
+        break;
+      case 1:
+        wobbledVals[key] = vals[key] + Math.random() * vals.wobble.amt;
+        break;
+      }
+    }
+
+    return wobbledVals;
+  };
 })(this);

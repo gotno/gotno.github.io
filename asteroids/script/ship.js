@@ -7,118 +7,104 @@
      options.vel = { x: 0, y: 0 };
      options.radius = Ship.RADIUS;
      options.color = Ship.COLOR;
-     options.angle = 270;
+     options.angle = Math.PI;
 
-     Asteroids.MovingObject.call(this, options);
+     this.ctx = ctx;
 
-     this.exhaustEmitter = new Asteroids.Emitter({
-       pos: $.extend({}, this.pos),
-       ctx: ctx
-     });
+     options.points = [
+       new Asteroids.Point({
+         origin: $.extend({}, pos),
+         radius: Ship.RADIUS,
+         angle: Math.PI/2
+       }),
+       new Asteroids.Point({
+         origin: $.extend({}, pos),
+         radius: Ship.RADIUS,
+         angle: Math.PI/2 + Math.degToRad(130)
+       }),
+       new Asteroids.Point({
+         origin: $.extend({}, pos),
+         radius: 0,
+         angle: 0
+       }),
+       new Asteroids.Point({
+         origin: $.extend({}, pos),
+         radius: Ship.RADIUS,
+         angle: Math.PI/2 - Math.degToRad(130)
+       })
+     ];
+     
 
-     this.emitterDistance = 10;
+     Asteroids.MovingObjectPointed.call(this, options);
+     this.attachEmitter(20, Math.PI);
    }
-   Ship.inherits(Asteroids.MovingObject);
+   Ship.inherits(Asteroids.MovingObjectPointed);
 
    Ship.prototype.impulse = function(ximp, yimp) {
-     this.vel.x += ( Math.sin(this.angle + Math.degToRad(90)) * Ship.IMPULSE );
-     this.vel.y += (-Math.cos(this.angle + Math.degToRad(90)) * Ship.IMPULSE );
+     this.vel.x += ( Math.sin(this.angle - Math.PI) * Ship.IMPULSE );
+     this.vel.y += (-Math.cos(this.angle - Math.PI) * Ship.IMPULSE );
      this.exhaustEmitter.emit();
    };
    
-   Ship.prototype.rotate = function(degrees) {
-     this.angle += Math.degToRad(degrees);
-   };
-
    Ship.prototype.fireBullet = function(game) {
      var options = {};
      options.pos = $.extend({}, this.pos);
 
      options.vel = {};
-     options.vel.x =  Math.sin(this.angle + Math.degToRad(90)) * Ship.BULLET_SPEED;
-     options.vel.y = -Math.cos(this.angle + Math.degToRad(90)) * Ship.BULLET_SPEED;
+     options.vel.x =  Math.sin(this.angle - Math.PI) * Ship.BULLET_SPEED;
+     options.vel.y = -Math.cos(this.angle - Math.PI) * Ship.BULLET_SPEED;
 
      var bullet = new Asteroids.Bullet(game, options);
      return bullet;
    };
 
    Ship.prototype.draw = function(ctx) {
-     var initOpts = { 
-       x: this.pos.x + Ship.RADIUS,
-       y: this.pos.y
-     };
-
-     var bow  = $.extend({}, initOpts);
-     bow.angle = this.angle;
-
-     var port = $.extend({}, initOpts);
-     port.angle = this.angle + Math.degToRad(130);
-
-     var star = $.extend({}, initOpts);
-     star.angle = this.angle - Math.degToRad(130);
-
-     var rotatedBow = Ship.rotatePoint(bow.x,
-                                       bow.y,
-                                       this.pos.x,
-                                       this.pos.y,
-                                       bow.angle);
-
-     var rotatedPort = Ship.rotatePoint(port.x,
-                                        port.y,
-                                        this.pos.x,
-                                        this.pos.y,
-                                        port.angle);
-
-     var rotatedStar = Ship.rotatePoint(star.x,
-                                        star.y,
-                                        this.pos.x,
-                                        this.pos.y,
-                                        star.angle);
-
-
-     ctx.fillStyle = this.color;
-
-     ctx.moveTo(rotatedStar.x, rotatedStar.y);
-     ctx.beginPath();
-     ctx.lineTo(rotatedBow.x, rotatedBow.y);
-     ctx.lineTo(rotatedPort.x, rotatedPort.y);
-     ctx.lineTo(this.pos.x, this.pos.y);
-     ctx.lineTo(rotatedStar.x, rotatedStar.y);
-     ctx.closePath();
-     ctx.fill();
-
-     var emitterOpts = {
-       x: this.pos.x + Ship.RADIUS + this.emitterDistance,
-       y: this.pos.y,
-       angle: this.angle - Math.PI
-     }
-     var rotatedEmitter = Ship.rotatePoint(emitterOpts.x,
-                                           emitterOpts.y,
-                                           this.pos.x,
-                                           this.pos.y,
-                                           emitterOpts.angle);
-     this.exhaustEmitter.pos.x = rotatedEmitter.x;
-     this.exhaustEmitter.pos.y = rotatedEmitter.y;
-     this.exhaustEmitter.angle = emitterOpts.angle;
-
+     this.exhaustEmitter.setOrigin($.extend({}, this.pos));
+     this.exhaustEmitter.setAngle(this.angle - Math.PI/2);
      this.exhaustEmitter.particleStep();
+
+     Asteroids.MovingObjectPointed.prototype.draw.call(this, ctx);
    }
 
-   Ship.rotatePoint = function(px, py, ox, oy, theta) {
-     var px = px;
-     var py = py;
-     var ox = ox;
-     var oy = oy;
-     var theta = theta;
+   Ship.prototype.attachEmitter = function (linearOffset, angleOffset) {
+     var emitterOpts = $.extend(true, {}, Ship.exhaustEmitterOptions);
 
-     newX = Math.cos(theta) * (px - ox) - Math.sin(theta) * (py - oy) + ox;
-     newY = Math.sin(theta) * (px - ox) + Math.cos(theta) * (py - oy) + oy;
+     emitterOpts.ctx = this.ctx;
 
-     return { x: newX, y: newY };
+     emitterOpts.point.origin = $.extend({}, this.pos);
+     emitterOpts.point.radius = linearOffset;
+     emitterOpts.point.angle = this.angle + angleOffset;
+
+     this.exhaustEmitter = new Asteroids.Emitter(emitterOpts);
    };
 
    Ship.RADIUS = 8;
    Ship.IMPULSE = 0.20;
    Ship.BULLET_SPEED = 12;
    Ship.COLOR = "#7dabca";
+
+   Ship.exhaustEmitterOptions = {
+     point: {
+       origin: {},
+       radius: 0,
+       angle: 0
+     },
+     emitter: {
+       vel: { x: 6, y: 6, wobble: { amt: 3, weight: 0 } },
+       rate: { num: 4, wobble: { amt: 2, weight: 0 } },
+       radius: { radius: 8, wobble: { amt: 4, weight: 0 } },
+       sputter: 20,
+       layers: 2
+     },
+     particles: {
+       vel: { decay: { amt: 0.8, weight: 0, limit: .1 } },
+       radius: { radius: 7, decay: { amt: 0.95, weight: 0, limit: 0 } },
+       angle: 0,
+       rotationSpeed: 0,
+       lifespan: { span: 20, wobble: { amt: 5, weight: 1 } },
+       lifeline: { attr: 'radius', val: 'radius', trigger: 0 },
+       layers: [{ color: '#fcfcfc', radiusOffset: 0 },
+                { color: Ship.COLOR, radiusOffset: -2 }]
+     }
+   }
 })(this);

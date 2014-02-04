@@ -2,46 +2,76 @@
   var Asteroids = root.Asteroids = (root.Asteroids || {});
 
   var Particle = Asteroids.Particle = function(options) {
+    var tempRadius = options.radius;
+    options.radius = options.radius.radius;
+
     Asteroids.MovingObject.call(this, options);
 
-    this.lifespan = options.lifespan || 30;
-    this.friction = options.friction || 1
+    this.radius = tempRadius;
+    this.lifespan = options.lifespan;
+    this.lifeline = options.lifeline;
+    this.layers = options.layers;
   };
 
   Particle.inherits(Asteroids.MovingObject);
 
   Particle.prototype.decay = function () {
     this.lifespan--;
-    this.vel.x *= this.friction;
-    this.vel.y *= this.friction;
-    if (this.radius >= 1.2) this.radius -= .2;
+    Particle.decayValues(this.vel);
+    Particle.decayValues(this.radius);
   };
 
-  Particle.prototype.drawFg = function (ctx) {
-    ctx.fillStyle = Asteroids.Ship.COLOR;
+  Particle.prototype.draw = function (layer, ctx) {
+    var layer = this.layers[layer];
+
+    ctx.fillStyle = layer.color;
 
     ctx.beginPath();
 
+    var radius = this.radius.radius + layer.radiusOffset;
+    if (radius < 0) radius = 0;
+
     ctx.arc(this.pos.x,
             this.pos.y,
-            this.radius - 1,
+            radius,
             0,
             2 * Math.PI);
 
     ctx.fill();
   };
-  
-  Particle.prototype.drawBg = function(ctx) {
-    ctx.fillStyle = this.color;
 
-    ctx.beginPath();
+  Particle.decayValues = function(vals) {
+    for (var key in vals) {
+      if (typeof vals[key] === 'object') continue;
 
-    ctx.arc(this.pos.x,
-            this.pos.y,
-            this.radius,
-            0,
-            2 * Math.PI);
-
-    ctx.fill();
+      switch (vals.decay.weight) {
+      case -1:
+        if (vals[key] > vals.decay.limit) {
+          vals[key] -= vals.decay.amt;
+        } else {
+          vals[key] = vals.decay.limit;
+        }
+        break;
+      case 0:
+        if (vals[key] < vals.decay.limit + .5) {
+          vals[key] = vals.decay.limit;
+        } else {
+          vals[key] *= vals.decay.amt;
+        }
+        break;
+      case 1:
+        if (vals[key] > vals.decay.limit) {
+          vals[key] += vals.decay.amt;
+        } else {
+          vals[key] = vals.decay.limit;
+        }
+        break;
+      default:
+        vals[key] *= vals.decay.amt;
+        if (vals[key] > vals.decay.limit) {
+          vals[key] = vals.decay.limit;
+        }
+      }
+    }
   };
 })(this);

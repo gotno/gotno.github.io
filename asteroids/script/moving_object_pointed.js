@@ -5,7 +5,6 @@
      Asteroids.MovingObject.call(this, options);
 
      this.points = options.points;
-     this.rotationSpeed = options.rotationSpeed;
      this.strokeColor = options.strokeColor || null;
    };
    var MovingObjectPointed = Asteroids.MovingObjectPointed;
@@ -33,6 +32,8 @@
    };
 
    MovingObjectPointed.prototype.rotate = function(angle) {
+     Asteroids.MovingObject.prototype.rotate.call(this, angle);
+
      this.points.forEach(function(point) {
        point.rotate(angle);
      });
@@ -40,8 +41,6 @@
 
    MovingObjectPointed.prototype.move = function(angle) {
      Asteroids.MovingObject.prototype.move.call(this);
-
-     this.rotate(this.rotationSpeed);
 
      var that = this;
      this.points.forEach(function(point) {

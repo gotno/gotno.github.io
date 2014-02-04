@@ -10,19 +10,21 @@
       y: Game.DIM_Y/2,
     }, ctx);
     this.bullets = [];
+    this.score = 0;
+    this.gameOver = false;
+
+    this.HUD = new Asteroids.HUD(ctx);
   };
 
-  Game.prototype.addAsteroids = function(numAsteroids, small, x, y) {
+  Game.prototype.addSmallAsteroids = function(numAsteroids, asteroid) {
     for (var i = 0; i < numAsteroids; i++) {
-      if (small) {
-        this.asteroids.push(Asteroids.Asteroid.randomAsteroid(Game.DIM_X,
-                                                              Game.DIM_Y,
-                                                              true,
-                                                              x, y));
-      } else {
-        this.asteroids.push(Asteroids.Asteroid.randomAsteroid(Game.DIM_X,
-                                                              Game.DIM_Y));
-      }
+      this.asteroids.push(Asteroids.Asteroid.randomSmallAsteroid(asteroid));
+    }
+  };
+  Game.prototype.addAsteroids = function(numAsteroids) {
+    for (var i = 0; i < numAsteroids; i++) {
+      this.asteroids.push(Asteroids.Asteroid.randomAsteroid(Game.DIM_X,
+                                                            Game.DIM_Y));
     }
   };
 
@@ -41,6 +43,12 @@
     });
 
     this.ship.draw(ctx);
+
+    if (!this.gameOver) {
+      this.HUD.drawInPlay(this.score);
+    } else {
+      this.HUD.drawGameOver(this.score);
+    }
   };
 
   Game.prototype.move = function() {
@@ -110,8 +118,8 @@
 
   Game.prototype.checkKeyPresses = function() {
     if(key.isPressed('up')) this.ship.impulse();
-    if(key.isPressed('left')) this.ship.rotate(-10);
-    if(key.isPressed('right')) this.ship.rotate(10);
+    if(key.isPressed('left')) this.ship.rotate(Math.degToRad(10));
+    if(key.isPressed('right')) this.ship.rotate(Math.degToRad(-10));
   }
 
   Game.prototype.addKeyBindings = function() {
@@ -126,9 +134,8 @@
     var game = this;
     this.asteroids.forEach(function(asteroid, aIdx){
       if (asteroid.isCollidedWith(game.ship)) {
-        //console.log("hit, over.");
-        //alert("GAME OVER!!!!")
-        game.stop();
+        game.gameOver = true;
+        //game.stop();
       }
 
       if (game.bullets.length > 0) {
@@ -152,11 +159,14 @@
 
   Game.prototype.handleBulletHit = function(aIdx, bIdx) {
     var asteroid = this.asteroids[aIdx];
-    var numNew = 1 + (Math.ceil(Math.random() * 2))
     if (!asteroid.isSmall()) {
-      this.addAsteroids(numNew, true, asteroid.pos.x, asteroid.pos.y);
+      var numNew = 1 + (Math.ceil(Math.random() * 2))
+      this.addSmallAsteroids(numNew, $.extend({}, asteroid));
+      this.score += 1;
     } else {
+      var numNew = 1 + (Math.ceil(Math.random() * 2))
       this.addAsteroids(numNew);
+      this.score += 2;
     }
     this.asteroids.splice(aIdx, 1);
     this.bullets.splice(bIdx, 1);
@@ -171,7 +181,7 @@
   };
 
   Game.INTERVAL_MILLISECONDS = 30;
-  Game.DIM_X = 640;
-  Game.DIM_Y = 480;
-  Game.MAX_BULLETS = 3;
+  Game.DIM_X = 800;
+  Game.DIM_Y = 600;
+  Game.MAX_BULLETS = 5;
 })(this);
