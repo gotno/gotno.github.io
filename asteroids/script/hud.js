@@ -54,7 +54,10 @@
     qString += '&l=10';
 
     $.support.cors = true;
-  //*
+    $.getJSON(url + key + qString + 'callback=?', function(data) {
+      console.log(data);
+    };
+  /*
     $.ajax({
       url: url + key + qString,
       type: "GET",
@@ -63,6 +66,28 @@
     }).done(function(msg) {
       console.log(arguments);
       console.log(msg);
+    });
+  // */
+  };
+
+  HUD.prototype.setHighScores = function() {
+    var scores = [ 
+      { initials: 'WOD', score: 2 },
+      { initials: 'ONT', score: 20000 }
+    ];
+
+    var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores?apiKey='
+    var key = '7E2CWYg8hIrz_IcFzq_eKsv1-ezDZpyi';
+
+    $.support.cors = true;
+  //*
+    $.ajax({
+      url: url + key,
+      type: "POST",
+      data: JSON.stringify(scores),
+      contentType: "application/json"
+    }).done(function(msg) {
+      console.log(arguments);
     });
   // */
   };
