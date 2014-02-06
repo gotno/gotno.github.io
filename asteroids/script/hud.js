@@ -47,9 +47,13 @@
     qString += '&s={"score": -1}';
     qString += '&l=10';
 
-    $.support.cors = true;
-    $.getJSON(url + qString + '?callback=?', function(data) {
-      console.log(data);
+    $.ajax({
+      url: url + qString,
+      type: "GET",
+      dataType: 'json',
+      success: function() {
+        console.log(arguments);
+      }
     });
   };
 
@@ -59,19 +63,17 @@
       { initials: 'ONT', score: 20000 }
     ];
 
-    var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores?apiKey='
-    var key = '7E2CWYg8hIrz_IcFzq_eKsv1-ezDZpyi';
+    var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores'
+    var key = '?apiKey=7E2CWYg8hIrz_IcFzq_eKsv1-ezDZpyi';
 
-    $.support.cors = true;
-    //*
     $.ajax({
       url: url + key,
       type: "POST",
       data: JSON.stringify(scores),
-      contentType: "application/json"
-    }).done(function(msg) {
-      console.log(arguments);
+      contentType: "application/json",
+      success: function() {
+        console.log(arguments);
+      }
     });
-    // */
   };
 })(this);
