@@ -36,9 +36,7 @@
      
 
      Asteroids.MovingObjectPointed.call(this, options);
-
-     this.exhaustEmitter = this.attachEmitter(Ship.exhaustEmitterOptions,
-                                              ctx, 20, Math.PI/2);
+     this.attachEmitter(20, Math.PI);
    }
    Ship.inherits(Asteroids.MovingObjectPointed);
 
@@ -56,30 +54,28 @@
      options.vel.x =  Math.sin(this.angle - Math.PI) * Ship.BULLET_SPEED;
      options.vel.y = -Math.cos(this.angle - Math.PI) * Ship.BULLET_SPEED;
 
-     var bullet = new Asteroids.Bullet(options);
+     var bullet = new Asteroids.Bullet(game, options);
      return bullet;
    };
 
    Ship.prototype.draw = function(ctx) {
-     //this.exhaustEmitter.setOrigin($.extend({}, this.pos));
-     //this.exhaustEmitter.setAngle(this.angle - Math.PI/2);
-     //
-     // why the fuck does this need to be here?!
+     this.exhaustEmitter.setOrigin($.extend({}, this.pos));
+     this.exhaustEmitter.setAngle(this.angle - Math.PI/2);
      this.exhaustEmitter.particleStep();
-     //this.emitters.forEach(function(emitter) {
-       // or this?!
-       //emitter.particleStep();
-     //});
 
      Asteroids.MovingObjectPointed.prototype.draw.call(this, ctx);
    }
 
-   Ship.prototype.destroy = function() {
-     delete this.exhaustEmitter;
-     this.emitters = [];
- 
-     this.exhaustEmitter = this.attachEmitter(Ship.exhaustEmitterOptions,
-                                              this.ctx, 20, Math.PI/2);
+   Ship.prototype.attachEmitter = function (linearOffset, angleOffset) {
+     var emitterOpts = $.extend(true, {}, Ship.exhaustEmitterOptions);
+
+     emitterOpts.ctx = this.ctx;
+
+     emitterOpts.point.origin = $.extend({}, this.pos);
+     emitterOpts.point.radius = linearOffset;
+     emitterOpts.point.angle = this.angle + angleOffset;
+
+     this.exhaustEmitter = new Asteroids.Emitter(emitterOpts);
    };
 
    Ship.RADIUS = 8;
@@ -98,9 +94,7 @@
        rate: { num: 4, wobble: { amt: 2, weight: 0 } },
        radius: { radius: 8, wobble: { amt: 4, weight: 0 } },
        sputter: 20,
-       layers: 2,
-//       throttle: true,
-       lifespan: -1
+       layers: 2
      },
      particles: {
        vel: { decay: { amt: 0.8, weight: 0, limit: .1 } },

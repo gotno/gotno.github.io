@@ -5,12 +5,6 @@
     this.ctx = ctx;
   };
 
-  HUD.prototype.drawStartScreen = function() {
-  }
-
-  HUD.prototype.drawHighScores = function() {
-  }
-
   HUD.prototype.drawInPlay = function(score) {
     var ctx = this.ctx;
     var scoreText = 'score: ' + score;
@@ -39,41 +33,5 @@
     
     ctx.fillText('GAME OVER', dimX/2, dimY/2 - 20 );
     ctx.fillText(scoreText, dimX/2, dimY/2 + 20 );
-  };
-
-  HUD.prototype.getHighScores = function() {
-    var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores'
-    var qString = '?apiKey=7E2CWYg8hIrz_IcFzq_eKsv1-ezDZpyi';
-    qString += '&s={"score": -1}';
-    qString += '&l=10';
-
-    $.ajax({
-      url: url + qString,
-      type: "GET",
-      dataType: 'json',
-      success: function() {
-        console.log(arguments);
-      }
-    });
-  };
-
-  HUD.prototype.setHighScores = function() {
-    var scores = [ 
-      { initials: 'WOD', score: 2 },
-      { initials: 'ONT', score: 20000 }
-    ];
-
-    var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores'
-    var key = '?apiKey=7E2CWYg8hIrz_IcFzq_eKsv1-ezDZpyi';
-
-    $.ajax({
-      url: url + key,
-      type: "POST",
-      data: JSON.stringify(scores),
-      contentType: "application/json",
-      success: function() {
-        console.log(arguments);
-      }
-    });
   };
 })(this);
