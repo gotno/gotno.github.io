@@ -42,14 +42,13 @@
   };
 
   HUD.prototype.getHighScores = function() {
-    var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores?apiKey='
-    var key = '7E2CWYg8hIrz_IcFzq_eKsv1-ezDZpyi';
-    var qString = '?';
-    qString += 's={"score": -1}';
+    var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores'
+    var qString = '?apiKey=7E2CWYg8hIrz_IcFzq_eKsv1-ezDZpyi';
+    qString += '&s={"score": -1}';
     qString += '&l=10';
 
     $.support.cors = true;
-    $.getJSON(url + key + qString + 'callback=?', function(data) {
+    $.getJSON(url + qString + 'callback=?', function(data) {
       console.log(data);
     });
   };
