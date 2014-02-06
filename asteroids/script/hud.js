@@ -48,7 +48,7 @@
     qString += '&l=10';
 
     $.support.cors = true;
-    $.getJSON(url + qString + 'callback=?', function(data) {
+    $.getJSON(url + qString + '?callback=?', function(data) {
       console.log(data);
     });
   };
