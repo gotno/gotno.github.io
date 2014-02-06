@@ -53,6 +53,7 @@
     qString += 's={"score": -1}';
     qString += '&l=10';
 
+    $.support.cors = true;
   //*
     $.ajax({
       url: url + key + qString,
