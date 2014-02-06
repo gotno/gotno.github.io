@@ -51,7 +51,7 @@
     $.support.cors = true;
     $.getJSON(url + key + qString + 'callback=?', function(data) {
       console.log(data);
-    };
+    });
   };
 
   HUD.prototype.setHighScores = function() {
