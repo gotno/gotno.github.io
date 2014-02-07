@@ -17,7 +17,9 @@
 
   Particle.prototype.decay = function () {
     this.lifespan--;
-    Particle.decayValues(this.vel);
+    //Particle.decayValues(this.vel);
+    this.vel.x *= this.vel.decay.amt;
+    this.vel.y *= this.vel.decay.amt;
     Particle.decayValues(this.radius);
   };
 

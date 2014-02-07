@@ -10,22 +10,11 @@
 
     this.addKeyBindings();
     this.setup();
-
-/*
-    this.test = new Asteroids.MovingObject({ 
-      pos: { x: Game.DIM_X/2, y: Game.DIM_Y/2 },
-      vel: { x: 0, y: 0 },
-      radius: 0,
-      angle: Math.PI,
-      color: '#000000',
-    });
-
-    this.test.attachEmitter(Game.emitterOptions, ctx, 20, Math.PI/2);
-*/
   };
 
   Game.prototype.setup = function() {
     this.asteroids = [];
+    this.emitterObjects = [];
     this.ship = new Asteroids.Ship({
       x: Game.DIM_X/2,
       y: Game.DIM_Y/2,
@@ -46,6 +35,10 @@
     });
     delete this.ship;
 
+    this.emitterObjects.forEach(function(EO) {
+      delete EO;
+    });
+
     this.setup();
   };
 
@@ -54,9 +47,10 @@
     key.setScope(mode);
   };
 
-  Game.prototype.addSmallAsteroids = function(numAsteroids, asteroid) {
+  Game.prototype.addSmallAsteroids = function(numAsteroids, asteroid, bullet) {
     for (var i = 0; i < numAsteroids; i++) {
-      this.asteroids.push(Asteroids.Asteroid.randomSmallAsteroid(asteroid));
+      var newAst = Asteroids.Asteroid.randomSmallAsteroid(asteroid, bullet);
+      this.asteroids.push(newAst);
     }
   };
 
@@ -81,6 +75,9 @@
       bullet.draw(ctx);
     });
 
+    this.emitterObjects.forEach(function(EO) {
+      EO.draw(ctx);
+    });
 
     switch(this.mode) {
     case 'start':
@@ -91,11 +88,10 @@
       this.HUD.drawInPlay(this.score);
       break;
     case 'over':
+      this.ship.draw(ctx);
       this.HUD.drawGameOver(this.score);
       break;
     }
-
-//    this.test.draw(ctx);
   };
 
   Game.prototype.move = function() {
@@ -118,9 +114,11 @@
       }
     });
 
-    this.bullets = tempBullets;
+    this.emitterObjects.forEach(function(EO) {
+      EO.move();
+    });
 
- //   this.test.move();
+    this.bullets = tempBullets;
   };
 
   Game.prototype.screenWrap = function(mObj) {
@@ -192,8 +190,9 @@
     var game = this;
     this.asteroids.forEach(function(asteroid, aIdx){
       if (asteroid.isCollidedWith(game.ship)) {
-        game.ship.destroy();
         game.switchModes('over');
+        game.ship.destroy();
+        console.log(this.mode);
 
         if (game.HUD.isHighScore(game.score)) {
           game.HUD.switchModes('input');
@@ -221,9 +220,13 @@
 
   Game.prototype.handleBulletHit = function(aIdx, bIdx) {
     var asteroid = this.asteroids[aIdx];
+    var bullet = this.bullets[bIdx];
+
     if (!asteroid.isSmall()) {
       var numNew = 1 + (Math.ceil(Math.random() * 2))
-      this.addSmallAsteroids(numNew, $.extend({}, asteroid));
+      this.addSmallAsteroids(numNew,
+                             $.extend({}, asteroid),
+                             $.extend({}, bullet));
       this.score += 1;
     } else {
       var numNew = 1 + (Math.ceil(Math.random() * 2))
@@ -231,11 +234,20 @@
       this.score += 2;
     }
 
+    this.addEmitterObject({
+      pos: { x: bullet.pos.x, y: bullet.pos.y },
+      vel: { x: 0, y: 0 },
+      radius: 0,
+      angle: 0,
+      rotationSpeed: Math.degToRad(30)
+    }, Game.bulletExplosionEmitter);
+
     delete this.asteroids[aIdx];
     this.asteroids.splice(aIdx, 1);
 
     delete this.bullets[bIdx];
     this.bullets.splice(bIdx, 1);
+
   };
 
   Game.prototype.start = function() {
@@ -250,6 +262,15 @@
     clearInterval(this.interval);
   }
 
+  Game.prototype.addEmitterObject = function(options, emitter) {
+    var newEO = new Asteroids.MovingObject(options);
+    this.emitterObjects.push(newEO);
+
+    var newEmitter = newEO.attachEmitter(emitter, this.ctx, 0, 0);
+    var newEmitter = newEO.attachEmitter(emitter, this.ctx, 0, Math.PI*2*.333);
+    var newEmitter = newEO.attachEmitter(emitter, this.ctx, 0, Math.PI*2*.666);
+  }
+
   Game.colors = {
     bg: '#123234'
   };
@@ -259,20 +280,20 @@
   Game.DIM_Y = 600;
   Game.MAX_BULLETS = 5;
 
-  Game.emitterOptions = {
+  Game.bulletExplosionEmitter = {
     point: {
       origin: {},
       radius: 0,
       angle: 0
     },
     emitter: {
-      vel: { x: 6, y: 6, wobble: { amt: 0, weight: 0 } },
+      vel: { x: 6, y: 6, wobble: { amt: 6, weight: 0 } },
       rate: { num: 1, wobble: { amt: 0, weight: 0 } },
-      radius: { radius: 8, wobble: { amt: 0, weight: 0 } },
-      sputter: 0,
-      layers: 1,
+      radius: { radius: 12, wobble: { amt: 4, weight: 0 } },
+      sputter: 50,
+      layers: 2,
       throttle: true,
-      lifespan: -1
+      lifespan: 5 
     },
     particles: {
       vel: { decay: { amt: 0.8, weight: 0, limit: .1 } },
@@ -280,7 +301,8 @@
       angle: 0,
       lifespan: { span: 20, wobble: { amt: 5, weight: 1 } },
       lifeline: { attr: 'radius', val: 'radius', trigger: 0 },
-      layers: [{ color: '#fcfcfc', radiusOffset: 0 }]
+      layers: [{ color: '#952933', radiusOffset: 0 },
+               { color: '#abef86', radiusOffset: 3 }]
     }
   }
 })(this);

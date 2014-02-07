@@ -61,15 +61,10 @@
    };
 
    Ship.prototype.draw = function(ctx) {
-     //this.exhaustEmitter.setOrigin($.extend({}, this.pos));
-     //this.exhaustEmitter.setAngle(this.angle - Math.PI/2);
-     //
-     // why the fuck does this need to be here?!
-     this.exhaustEmitter.particleStep();
-     //this.emitters.forEach(function(emitter) {
-       // or this?!
-       //emitter.particleStep();
-     //});
+     this.emitters.forEach(function(emitter) {
+       emitter.particleStep();
+     });
+//     this.exhaustEmitter.particleStep();
 
      Asteroids.MovingObjectPointed.prototype.draw.call(this, ctx);
    }
@@ -77,15 +72,45 @@
    Ship.prototype.destroy = function() {
      delete this.exhaustEmitter;
      this.emitters = [];
+     this.points = [];
  
-     this.exhaustEmitter = this.attachEmitter(Ship.exhaustEmitterOptions,
-                                              this.ctx, 20, Math.PI/2);
+     this.rotationSpeed = Math.degToRad(30);
+     this.attachEmitter(Ship.explosionEmitterOptions, this.ctx, 0, 0);
+     this.attachEmitter(Ship.explosionEmitterOptions, this.ctx, 0, Math.PI*2*.333);
+     this.attachEmitter(Ship.explosionEmitterOptions, this.ctx, 0, Math.PI*2*.666);
    };
 
    Ship.RADIUS = 8;
    Ship.IMPULSE = 0.20;
    Ship.BULLET_SPEED = 12;
    Ship.COLOR = "#7dabca";
+
+   Ship.explosionEmitterOptions = {
+     point: {
+       origin: {},
+       radius: 0,
+       angle: 0
+     },
+     emitter: {
+       vel: { x: 6, y: 6, wobble: { amt: 4, weight: 0 } },
+       rate: { num: 3, wobble: { amt: 1, weight: 0 } },
+       radius: { radius: 14, wobble: { amt: 4, weight: 0 } },
+       sputter: 20,
+       layers: 2,
+       throttle: true,
+       lifespan: 15 
+     },
+     particles: {
+       vel: { decay: { amt: 0.7, weight: 0, limit: .1 } },
+       radius: { radius: 0, decay: { amt: 0.95, weight: 0, limit: 0 } },
+       angle: 0,
+       rotationSpeed: 0,
+       lifespan: { span: 20, wobble: { amt: 5, weight: 1 } },
+       lifeline: { attr: 'radius', val: 'radius', trigger: 0 },
+       layers: [{ color: Asteroids.Asteroid.COLOR, radiusOffset: 0 },
+                { color: Ship.COLOR, radiusOffset: -1 }]
+     }
+   };
 
    Ship.exhaustEmitterOptions = {
      point: {
@@ -94,17 +119,16 @@
        angle: 0
      },
      emitter: {
-       vel: { x: 6, y: 6, wobble: { amt: 3, weight: 0 } },
-       rate: { num: 4, wobble: { amt: 2, weight: 0 } },
-       radius: { radius: 8, wobble: { amt: 4, weight: 0 } },
+       vel: { x: 6, y: 6, wobble: { amt: 4, weight: 0 } },
+       rate: { num: 3, wobble: { amt: 1, weight: 0 } },
+       radius: { radius: 10, wobble: { amt: 2, weight: 0 } },
        sputter: 20,
        layers: 2,
-//       throttle: true,
        lifespan: -1
      },
      particles: {
-       vel: { decay: { amt: 0.8, weight: 0, limit: .1 } },
-       radius: { radius: 7, decay: { amt: 0.95, weight: 0, limit: 0 } },
+       vel: { decay: { amt: 0.7, weight: 0, limit: .1 } },
+       radius: { radius: 0, decay: { amt: 0.95, weight: 0, limit: 0 } },
        angle: 0,
        rotationSpeed: 0,
        lifespan: { span: 20, wobble: { amt: 5, weight: 1 } },
