@@ -299,8 +299,8 @@
         if (game.frameCount % 3 === 0) {
           var link = canvas.toDataURL("image/png");
           var img = $('<li><img src="' + link + '"></li>');
-          img.css('display', 'none' });
-          $("ul.images").append($('<li><img src="' + link + '"></li>'));
+          img.css('display', 'none');
+          $("ul.images").append(img);
         }
       }
       
