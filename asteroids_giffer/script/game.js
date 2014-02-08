@@ -1,7 +1,11 @@
 (function(root) {
   var Asteroids = root.Asteroids = (root.Asteroids || {});
 
-  var Game = Asteroids.Game = function (ctx) {
+  var Game = Asteroids.Game = function (ctx, canvas) {
+    this.canvas = canvas;
+    this.frameCount = 0;
+    this.record = false;
+
     this.switchModes('start');
     this.ctx = ctx;
 
@@ -190,6 +194,10 @@
       game.fireBullet();
     });
 
+    key('r', function() {
+      game.record = !game.record;
+    });
+
     key('a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,backspace',
          'over',
          function(event, handler) {
@@ -285,7 +293,16 @@
     var game = this;
 
     this.interval = setInterval(function() {
-      game.step(); 
+      game.step();
+      game.frameCount++;
+      if (game.record) {
+        if (game.frameCount % 3 === 0) {
+          var link = canvas.toDataURL("image/png");
+          //$("ul.images").append($('<li><a href="' + link + '" download="a' + game.frameCount + '">Save Image</a></li>'));
+          $("ul.images").append($('<li><img src="' + link + '"></li>'));
+        }
+      }
+      
     }, Game.INTERVAL_MILLISECONDS);
   };
 

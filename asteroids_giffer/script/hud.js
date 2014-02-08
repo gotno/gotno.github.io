@@ -160,7 +160,7 @@
 
   HUD.prototype.getHighScores = function() {
     var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores'
-    var qString = '?apiKey=Y3FOFjCrucyfOUhqf2vOdfhE84VmGz9p';
+    var qString = '?apiKey=Bn6nqxKqkpACqqn8b2xws7fVMB9HkVY2';
     qString += '&s={"score": -1}';
     qString += '&l=10';
 
@@ -177,8 +177,7 @@
 
   HUD.prototype.addHighScore = function(highScore) {
     var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores'
-    var key = '?apiKey=Y3FOFjCrucyfOUhqf2vOdfhE84VmGz9p';
-    
+    var key = '?apiKey=Bn6nqxKqkpACqqn8b2xws7fVMB9HkVY2';
 
     var HUD = this;
     $.ajax({

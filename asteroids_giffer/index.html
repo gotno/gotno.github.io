@@ -20,6 +20,7 @@
       <canvas width="800" height="600"></canvas>
       <script src='./assets/keymaster.js'></script>
       <script src='./assets/jquery-1.11.0.js'></script>
+      <script src='./assets/animated_gif.js'></script>
       <script src='./script/util.js'></script>
       <script src='./script/point.js'></script>
       <script src='./script/moving_object.js'></script>
@@ -35,6 +36,27 @@
         var canvas = document.getElementsByTagName('canvas')[0];
         game = new Asteroids.Game(canvas.getContext('2d'), canvas);
         game.start();
+
+        var makeGif = function() {
+          var imgs = document.querySelectorAll('img');
+
+          // change workerPath to point to where Animated_GIF.worker.js is
+          var ag = new Animated_GIF({ workerPath: 'assets/animated_gif_worker.js' }); 
+          ag.setSize(800, 600);
+          ag.setDelay(90);
+
+          for(var i = 0; i < imgs.length; i++) {
+              ag.addFrame(imgs[i]);
+          }
+
+          var animatedImage = document.createElement('img');
+
+          // This is asynchronous, rendered with WebWorkers
+          ag.getBase64GIF(function(image) {
+              animatedImage.src = image;
+              document.body.appendChild(animatedImage);
+          });
+        }
       </script>
       <ul class="images">
       </ul>
