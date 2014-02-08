@@ -43,6 +43,7 @@
           // change workerPath to point to where Animated_GIF.worker.js is
           var ag = new Animated_GIF({ workerPath: 'assets/animated_gif_worker.js' }); 
           ag.setSize(800, 600);
+          ag.setDelay(30);
 
           for(var i = 0; i < imgs.length; i++) {
               ag.addFrame(imgs[i]);
