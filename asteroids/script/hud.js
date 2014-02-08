@@ -178,7 +178,6 @@
   HUD.prototype.addHighScore = function(highScore) {
     var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores'
     var key = '?apiKey=Y3FOFjCrucyfOUhqf2vOdfhE84VmGz9p';
-    
 
     var HUD = this;
     $.ajax({
