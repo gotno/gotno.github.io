@@ -115,7 +115,7 @@
       this.HUD.drawInPlay(this.score);
       break;
     case 'over':
-      this.HUD.drawGameOver(this.score);
+      //this.HUD.drawGameOver(this.score);
       break;
     }
   };
@@ -298,7 +298,8 @@
       if (game.record) {
         if (game.frameCount % 3 === 0) {
           var link = canvas.toDataURL("image/png");
-          //$("ul.images").append($('<li><a href="' + link + '" download="a' + game.frameCount + '">Save Image</a></li>'));
+          var img = $('<li><img src="' + link + '"></li>');
+          img.css({ display: none });
           $("ul.images").append($('<li><img src="' + link + '"></li>'));
         }
       }
