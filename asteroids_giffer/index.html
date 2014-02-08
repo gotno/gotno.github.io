@@ -37,13 +37,13 @@
         game = new Asteroids.Game(canvas.getContext('2d'), canvas);
         game.start();
 
-        var makeGif = function() {
+        var makeGif = function(delay) {
           var imgs = document.querySelectorAll('img');
 
           // change workerPath to point to where Animated_GIF.worker.js is
           var ag = new Animated_GIF({ workerPath: 'assets/animated_gif_worker.js' }); 
           ag.setSize(800, 600);
-          ag.setDelay(90);
+          ag.setDelay(delay || 90);
 
           for(var i = 0; i < imgs.length; i++) {
               ag.addFrame(imgs[i]);
