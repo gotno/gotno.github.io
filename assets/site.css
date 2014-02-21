@@ -154,13 +154,17 @@ a:hover {
   line-height: 1.4em;
 }
 
-.projects ul {
+.projects ul.asteroids-gifs {
   margin-top: 1em;
 }
 
-.projects ul.gifs li {
+.projects ul.asteroids-gifs li {
   margin-left: 5px;
   float: left;
+}
+
+.projects ul.asteroids-info {
+  clear: left;
 }
 
 .glossy-gif {
