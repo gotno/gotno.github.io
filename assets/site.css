@@ -154,8 +154,15 @@ a:hover {
   line-height: 1.4em;
 }
 
+.projects ul {
+  margin-top: 1em;
+}
+
 .projects ul.gifs li {
   margin-left: 5px;
   float: left;
 }
 
+.glossy-gif {
+  border: 1px solid black;
+  margin-top: 1em;
