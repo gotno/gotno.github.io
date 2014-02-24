@@ -1,172 +1,104 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
-@import url(http://fonts.googleapis.com/css?family=Merriweather:400,700);
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
 body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-/* apply a natural box layout model to all elements */
-*, *:before, *:after {
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
-  box-sizing: border-box;
-}
-
-/* scale images */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-@media \0screen {
-  img {
-    width: auto; // ie hack
-  }
-}
-/* end reset */
-
-h1, h2 {
-  font-family: 'Open Sans';
-}
-
-body {
-  font-family: 'Merriweather';
-}
-
-a {
-  text-decoration: none;
-  color: gray;
-}
-a:hover {
-  text-decoration: underline;
+  background: #b5ffd9;
 }
 
 .container {
-  width: 70%;
-  margin: 0 auto;
-  margin-top: 3em;
+  background: #e1ffef;
+  border-left: 40px solid #c9ffe3;
+  border-right: 40px solid #c9ffe3;
+  padding-bottom: 50px;
 }
 
-.personal {
-  width: 45%;
-  float: left;
-}
-
-
-.story {
-  margin-top: 1em;
-
-  float: left;
-  clear: left;
-}
-
-.story p {
-  margin-bottom: 1em;
-  line-height: 1.4em;
-}
-
-.photo {
-  float: left;
-}
-
-.lede {
-  width: 100%;
-  font-weight: 600;
-  font-size: 1.4em;
+.head header {
   text-align: center;
-  margin-bottom: 1.4em;
 }
 
-.projects {
-  float: right;
-  width: 53%;
-  margin-left: 2%;
-
-}
-
-.projects h1 {
-  font-size: 1.2em;
+.head header h1 {
+  color: #e1ffef;
+  font-size: 6em;
   font-weight: bold;
-  margin-bottom: 1em;
+  line-height: 1.8em;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.2);
 }
 
-.projects h2 {
-  font-size: 1em;
-  font-weight: bold;
-  margin-bottom: .4em;
+.projects > div {
+  text-align: center;
 }
 
-.projects ul {
-  margin-left: 1.4em;
-  margin-bottom: 1em;
-  margin-top: .4em;
-  list-style: none;
+.glossy header,
+.asteroids header,
+.about header {
+  width: 94%;
+  margin: 0 auto;
+  margin-top: .2em;
+  background: #c9ffe3;
+  padding: .3em;
+  padding-top: .5em;
+  -webkit-box-shadow: 0 8px 6px -6px rgba(244,115,130,0.5);
+     -moz-box-shadow: 0 8px 6px -6px rgba(244,115,130,0.5);
+          box-shadow: 0 8px 6px -6px rgba(244,115,130,0.5);
 }
 
-.projects ul li {
-  margin-bottom: .4em;
-  line-height: 1.4em;
+.glossy h2,
+.about h2 {
+  letter-spacing: .05em;
+  color: #f47382;
 }
 
-.projects ul.asteroids-gifs {
-  margin-top: 1em;
+.asteroids h2 {
+  letter-spacing: .1em;
+  font-size: 2em;
+  color: #f47382;
 }
 
-.projects ul.asteroids-gifs li {
-  margin-left: 5px;
-  float: left;
-}
-
-.projects ul.asteroids-info {
-  clear: left;
+.glossy h3,
+.asteroids h3 {
+  padding-top: .2em;
+  letter-spacing: .05em;
+  color: #474d4d;
+  font-size: 1.4em;
 }
 
 .glossy-gif {
-  border: 1px solid black;
   margin-top: 1em;
+  width: 98%;
+}
+
+.asteroids-gifs {
+  margin-top: 1em;
+  width: 100%
+}
+
+.asteroids-gifs li {
+  float: left;
+  width: 32%;
+  margin-left: 1%;
+}
+
+.asteroids-gifs li img {
+  width: 100%;
+}
+
+.other h3 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.other a {
+  margin-bottom: .6em;
+}
+
+.about .photo img {
+  margin-top: 2em;
+  width: 100%;
+  border: 2px solid #f47382;
+}
+
+.about div {
+  text-align: center;
+}
+
+.about header {
+  margin-bottom: 1em;
+}
+

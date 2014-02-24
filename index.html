@@ -1,71 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Will Floyd | gotno.github.io</title>
-  <link rel="stylesheet" type="text/css" href="assets/site.css">
-</head>
-<body>
-  <div class="container">
-    <div class="personal">
-      <div class="photo">
-        <img src="assets/images/portophoto.jpg">
-      </div>
-
-
-      <div class="story">
-        <div class="lede">
-          <h1>Hi, I'm <a href="mailto:floyd.will@gmail.com">Will<h1></a>
+  <head>
+    <title>Will Floyd | Portfolio</title>
+    <link rel="stylesheet" type="text/css" href="assets/skeleton/base.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/skeleton/skeleton.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/skeleton/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/site.css"/>
+  </head>
+  <body>
+    <article class="container">
+      <section class="row head">
+        <header class="sixteen columns">
+          <h1>i've been building things.</h1>
+        </header>
+      </section>
+      <section class="row projects">
+        <div class="eight columns glossy">
+          <header>
+            <h2>glossy</h2>
+          </header>
+          <h3>An experimental blogging platform</h3>
+          <a target="blank" href="http://www.glossy.so"><strong>Live Demo</strong></a> | <a target="blank" href="https://github.com/gotno/glossy"><strong>Github</strong></a>
+          <img class="glossy-gif" src="assets/images/glossy.gif">
+          <ul>
+            <li>Rich interactive blog post editor.<br/>Backbone app consuming a RESTful Rails API.</li>
+            <li>Drag-and-drop layout editing with views nested four levels deep.</li>
+            <li>Nested forms create multiple model types in a single transaction.</li>
+            <li>Bootstrapped data and customized JSON serialization<br/>to reduce AJAX overhead.</li>
+          </ul>
         </div>
-          <p>I'm a Web Developer currently looking for work in the San Francisco Bay Area.
+        <div class="eight columns asteroids">
+          <header>
+            <h2>INFINITE ASTEROIDS</h2>
+          </header>
+          <h3>A new twist on the arcade classic</h3>
+          <a target="blank" href="http://gotno.github.io/asteroids"><strong>Play It Here</strong></a> | <a target="blank" href="https://github.com/gotno/asteroids"><strong>Github</strong></a>
+          <ul class="asteroids-gifs">
+            <li><img src="assets/images/asteroids/bullet_explosion1_sm.gif"></li>
+            <li><img src="assets/images/asteroids/ship_spin2_sm.gif"></li>
+            <li><img src="assets/images/asteroids/ship_explosion1_sm.gif"></li>
+          </ul>
+          <ul class="asteroids-info">
+            <li>Built with JavaScript, rendering on an HTML5 canvas.</li>
+            <li>Hand-rolled particle effects system.</li>
+            <li>Trigonometric functions calculating collisions, acceleration, etc.</li>
+            <li>NoSQL Database for high-score leaderboards.</li>
+          </ul>
+          <div class="other">
+            <header>
+              <h2>Other Things</h2>
+            </header>
+            <h3>Knight's Travail</h3>
+            <a target="blank" href="https://github.com/gotno/knight-s-travail">Github</a>
+            <p>Solved in Ruby. Breadth-first-search discovers a Knight's shortest possible path between any two points on a chessboard.</p>
+
+            <h3>Chatmo</h3>
+            <a target="blank" href="https://github.com/gotno/chatmo">Github</a>
+            <p>Node.js server using Socket.io for multi-user web chat.</p>
+          </div>
+        </div>
+      </section>
+      <section class="row about">
+        <div class="seven columns offset-by-one">
+          <header>
+            <h2>Who is Will Floyd?</h2>
+          </header>
+          <p>I'm a Web Developer living in the San Francisco Bay Area.
           <p>There have always been two major passions in my life: Learning, and Building.
-
-          <p>I taught myself to use a computer at an MSDOS terminal. In High School, I taught myself to program. I worked as a web developer right out of school. After a couple of years I decided I wanted to try building bread instead of software, so I taught myself to bake. I spent six years honing my craft in restaurants and bakeries throughout the west.</p>
-
-          <p>In all that time, I never stopped loving code. I taught myself to use Linux. I continued to tinker with new ideas and technologies. Eventually I decided to start really engineering software again. I taught myself a wide subset of modern web technologies, and I'm ready to dig in to a whole new set of problems.</p>
-
-          <p>I've never much known what to do with my life, but I do know this. Learning new things makes me happy. Perfecting a skill is what brings meaning to my life. Solving complex problems is something my brain seems tuned to excel at. But most of all, what I love is building things.</p>
-
-          <p>I'm looking for the opportunity to build amazing things at a company I love.</p>
-
-        <p><strong>Why not contact me today?</strong> <a href="floyd.will@gmail.com"> floyd.will@gmail.com</a></p>
-      </div>
-    </div>
-
-    <div class="projects">
-      <h1>Recent Projects</h1>
-
-      <h2>Glossy - An experimental blogging platform.</h2>
-      <a href="http://www.glossy.so">www.glossy.so</a> | <a href="https://github.com/gotno/glossy">github.com/gotno/glossy</a>
-      <img class="glossy-gif" src="assets/images/glossy.gif">
-      <ul>
-        <li>Rich interactive blog post editor. Backbone app consuming a RESTful Rails API.</li>
-        <li>Drag-and-drop layout editing with views nested four levels deep.</li>
-        <li>Nested forms create multiple model types in a single transaction.</li>
-        <li>Bootstrapped data and customized JSON serialization to reduce AJAX overhead.</li>
-      </ul>
-
-      <h2>INFINITE ASTEROIDS - A new twist on the classic arcade game.</h2>
-      <span class="subhead">
-        <a href="asteroids/index.html">play it here</a> | <a href="https://github.com/gotno/asteroids">github.com/gotno/asteroids</a>
-      </span>
-      <ul class="asteroids-gifs">
-        <li><img src="assets/images/asteroids/bullet_explosion1_sm.gif"></li>
-        <li><img src="assets/images/asteroids/ship_spin2_sm.gif"></li>
-        <li><img src="assets/images/asteroids/ship_explosion1_sm.gif"></li>
-      </ul>
-      <ul class="asteroids-info">
-        <li>Built with JavaScript, rendering on an HTML5 canvas.</li>
-        <li>Hand-rolled particle effects system.</li>
-        <li>Trigonometric functions calculating collisions, acceleration, etc.</li>
-        <li>NoSQL Database for high-score leaderboards.</li>
-      </ul>
-
-      <h2>Knight's Travail</h2>
-      <a href="https://github.com/gotno/knight-s-travail">github link</a>
-      <ul>
-        <li>Solved in Ruby. Breadth-first-search discovers a Knight's shortest possible path between any two points on a chessboard.</li>
-      </ul>
-    </div>
-  </div>
-</body>
+          <p>Learning new things makes me happy. Perfecting a skill is what brings meaning to my life. Solving complex problems is something my brain seems tuned to excel at. But most of all, what I love is building things.</p>
+          <p>I'm looking for the opportunity to build beautiful things at a company I love.</p>
+          <p><strong>Why not contact me today?</strong> <a href="mailto:floyd.will@gmail.com"> floyd.will@gmail.com</a></p>
+        </div>
+        <div class="seven columns photo">
+          <img src="assets/images/photo.jpg">
+        </div>
+      </section>
+    </article>
+  </body>
 </html>
