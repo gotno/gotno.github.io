@@ -26,10 +26,6 @@ html, body {
   font-size: 16px;
 }
 
-section + section {
-  /* margin-top: .5rem; */
-}
-
 section > header {
   background: #282828;
   color: white;
@@ -127,11 +123,13 @@ section > header > nav > a.disabled {
   float: left;
   height: 100%;
   width: 50%;
+  padding-right: 6%;
 }
 
 #from-the-shop .latnav-card > .content > .info {
   float: right;
-  padding-left: 3%;
+  padding-left: 6%;
+  padding-right: 0;
 }
 
 .latnav-card > .content > .info > .supertitle {
@@ -146,6 +144,24 @@ section > header > nav > a.disabled {
   font-weight: 300;
   font-size: 1.3rem;
   margin-top: .5rem;
+}
+
+#from-the-shop .latnav-card > .content > .info > h2 {
+  margin-top: 20%;
+}
+
+#from-the-shop .latnav-card > .content > .info > .price-string {
+  margin-top: 15%;
+  font-weight: 600;
+  font-style: italic;
+}
+
+#upcoming-events .latnav-card > .content > .info > .price-string {
+  margin-top: 15%;
+  font-weight: 600;
+  font-style: italic;
+  position: absolute;
+  bottom: 9%;
 }
 
 .latnav-card > .content > .info > .byline {
