@@ -3,6 +3,8 @@
   <head>
     <link rel="stylesheet" type="text/css" href="assets/owl.carousel.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="//use.typekit.net/kpa1bib.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
   <body>
     <style>
@@ -120,10 +122,27 @@
         float: left;
       }
 
+      #upcoming-events .latnav-card > .content > .image {
+        padding: 6%;
+      }
+
+      #upcoming-events .latnav-card > .content > .image > img {
+        border-radius: 50%;
+      }
+
+      #from-the-shop .latnav-card > .content > .image {
+        float: right;
+      }
+
       .latnav-card > .content > .info {
         float: left;
         height: 100%;
         width: 50%;
+      }
+
+      #from-the-shop .latnav-card > .content > .info {
+        float: right;
+        padding-left: 3%;
       }
 
       .latnav-card > .content > .info > .supertitle {
@@ -273,6 +292,65 @@
       </div>
     </section>
 
+    <section>
+      <header>
+        <h1>from the shop</h1>
+
+        <nav>
+          <a href="" class="disabled"></a>
+          <a href=""></a>
+        </nav>
+      </header>
+
+      <div id="from-the-shop" class="owl-carousel">
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>6 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>6 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>6 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="assets/owl.carousel.js"></script>
     <script>
@@ -283,6 +361,7 @@
         };
         $("#editors-picks").owlCarousel(options);
         $("#upcoming-events").owlCarousel(options);
+        $("#from-the-shop").owlCarousel(options);
       });
     </script>
   </body>
