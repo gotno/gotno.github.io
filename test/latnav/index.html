@@ -13,8 +13,8 @@
         <h1>editor's picks</h1>
 
         <nav>
-          <a href="" class="disabled"></a>
-          <a href=""></a>
+          <a href="" class="prev disabled"></a>
+          <a id="next" href="" class="next"></a>
         </nav>
       </header>
 
@@ -28,7 +28,7 @@
 
             <div class="info">
               <div class="supertitle">crime + safety</div>
-              <h2>6 places to picnic that aren't Delores Park</h2>
+              <h2>5 places to picnic that aren't Delores Park</h2>
               <div class="byline"><em>by </em>wendy steiner</div>
             </div>
 
@@ -72,8 +72,8 @@
         <h1>upcoming events</h1>
 
         <nav>
-          <a href="" class="disabled"></a>
-          <a href=""></a>
+          <a href="" class="prev disabled"></a>
+          <a id="next" href="" class="next"></a>
         </nav>
       </header>
 
@@ -131,8 +131,8 @@
         <h1>from the shop</h1>
 
         <nav>
-          <a href="" class="disabled"></a>
-          <a href=""></a>
+          <a href="" class="prev disabled"></a>
+          <a id="next" href="" class="next"></a>
         </nav>
       </header>
 
@@ -186,13 +186,46 @@
     <script src="assets/owl.carousel.js"></script>
     <script>
       $(document).ready(function(){
-        var options = {
-          items: 1,
-          loop: true
-        };
-        $("#editors-picks").owlCarousel(options);
-        $("#upcoming-events").owlCarousel(options);
-        $("#from-the-shop").owlCarousel(options);
+        var carousels = ['#editors-picks', '#upcoming-events', '#from-the-shop'];
+
+        carousels.forEach(function(c) {
+          var $carousel = $(c),
+            $prev = $carousel.parent().find('.prev'),
+            $next = $carousel.parent().find('.next'),
+            prevDisabled = true,
+            enablePrev = function() {
+              if (prevDisabled) {
+                $prev.removeClass('disabled');
+
+                $prev.click(function(event) {
+                  event.preventDefault();
+                  $carousel.trigger('prev.owl.carousel');
+                });
+
+                prevDisabled = false;
+
+                //$carousel.data()['owl.carousel'].settings.loop = true;
+                console.log($carousel.data()['owl.carousel']);
+              }
+            },
+            options = {
+              items: 1,
+              loop: true,
+              onDragged: enablePrev
+            };
+
+          $carousel.owlCarousel(options);
+
+          $prev.click(function(event) {
+            event.preventDefault();
+          });
+
+          $next.click(function(event) {
+            event.preventDefault();
+            $carousel.trigger('next.owl.carousel');
+            enablePrev();
+          });
+        });
       });
     </script>
   </body>

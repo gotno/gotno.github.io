@@ -60,17 +60,17 @@ section > header > nav > a {
   text-decoration: none;
 }
 
-section > header > nav > a:first-child:before {
+section > header > nav > .prev:first-child:before {
   content: "<";
 }
-section > header > nav > a:first-child {
+section > header > nav > .prev:first-child {
   border-right: 1px solid #282828;
 }
 
-section > header > nav > a:last-child:before {
+section > header > nav > .next:last-child:before {
   content: ">";
 }
-section > header > nav > a:last-child {
+section > header > nav > .next:last-child {
   border-left: 1px solid #282828;
 }
 
