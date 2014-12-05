@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="assets/owl.carousel.css">
+  </head>
+  <body>
+    <style>
+
+      /*
+      pink: #ec008c
+      dark pink: #9e1064
+      light pink: #d89fc1
+      light gray: #eaeaea
+      gray: #666
+      dark gray: #282828
+      */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      html, body {
+        height: 100%;
+        background: #eaeaea;
+
+        font-family: sans-serif;
+        font-size: 16px;
+      }
+
+      section + section {
+        /* margin-top: .5rem; */
+      }
+
+      section > header {
+        background: #282828;
+        color: white;
+        font-family: sans-serif;
+        height: 3rem;
+      }
+
+      section > header > h1 {
+        display: inline-block;
+        text-transform: uppercase;
+        font-size: 1rem;
+        line-height: 3rem;
+        width: 50%;
+        text-align: center;
+        letter-spacing: 1px;
+      }
+
+      section > header > nav {
+        float: right;
+        width: 6rem;
+      }
+
+      section > header > nav > a {
+        color: white;
+        width: 50%;
+        text-align: center;
+        float: left;
+        font-size: 2rem;
+        line-height: 3rem;
+        background: #ec008c;
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      section > header > nav > a:first-child:before {
+        content: "<";
+      }
+      section > header > nav > a:first-child {
+        border-right: 1px solid #282828;
+      }
+
+      section > header > nav > a:last-child:before {
+        content: ">";
+      }
+      section > header > nav > a:last-child {
+        border-left: 1px solid #282828;
+      }
+
+      section > header > nav > a.disabled {
+        background: #9e1064;
+        color: #d89fc1;
+        cursor: default;
+      }
+
+      .latnav-card {
+        position: relative;
+        width: 100%;
+
+        background: white;
+      }
+
+      .latnav-card:before{
+        content: "";
+        display: block;
+        padding-top: 50%;
+      }
+
+      .latnav-card > .content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+      .latnav-card > .content > .image {
+        width: 50%;
+        padding: 3%;
+        float: left;
+      }
+
+      .latnav-card > .content > .info {
+        float: left;
+        height: 100%;
+        width: 50%;
+      }
+
+      .latnav-card > .content > .info > .supertitle {
+        margin-top: 9%;
+
+        text-transform: uppercase;
+        font-size: .7rem;
+        font-weight: 600;
+      }
+
+      .latnav-card > .content > .info > h2 {
+        font-weight: 300;
+        font-size: 1.3rem;
+        margin-top: .5rem;
+      }
+
+      .latnav-card > .content > .info > .byline {
+        text-transform: uppercase;
+        position: absolute;
+        bottom: 9%;
+        color: #666;
+        font-size: .9rem;
+      }
+
+      .latnav-card > .content > .info > .byline > em {
+        text-transform: none;
+        font-family: serif;
+        font-size: .8rem;
+      }
+    </style>
+
+    <section>
+      <header>
+        <h1>editor's picks</h1>
+
+        <nav>
+          <a href="" class="disabled"></a>
+          <a href=""></a>
+        </nav>
+      </header>
+
+      <div id="editors-picks" class="owl-carousel">
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>6 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>6 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>6 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <header>
+        <h1>upcoming events</h1>
+
+        <nav>
+          <a href="" class="disabled"></a>
+          <a href=""></a>
+        </nav>
+      </header>
+
+      <div id="upcoming-events" class="owl-carousel">
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>6 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>6 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>6 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="assets/owl.carousel.js"></script>
+    <script>
+      $(document).ready(function(){
+        var options = {
+          items: 1,
+          loop: true
+        };
+        $("#editors-picks").owlCarousel(options);
+        $("#upcoming-events").owlCarousel(options);
+      });
+    </script>
+  </body>
+</html>
