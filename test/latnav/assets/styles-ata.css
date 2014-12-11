@@ -99,17 +99,15 @@ section > section > .content > .carousel {
 }
 
 section > section > .content > .carousel > div {
-  /* width: 33%; */
   margin-top: .6rem;
   margin-bottom: .6rem;
-  /* float: left; */
 }
 section > section > .content > .carousel > div img {
   border-radius: 50%;
   width: 80%;
 }
 
-.info-card {
+.info {
   position: relative;
   width: 100%;
   margin-top: 1.75rem;
@@ -117,13 +115,13 @@ section > section > .content > .carousel > div img {
   background: #eaeaea;
 }
 
-.info-card:before{
+.info:before{
   content: "";
   display: block;
   padding-top: 50%;
 }
 
-.info-card > .info {
+.info > .info-carousel {
   position: absolute;
   top: 0;
   right: 0;
@@ -133,7 +131,7 @@ section > section > .content > .carousel > div img {
   padding: 2rem;
 }
 
-.info-card > .arrow {
+.info > .arrow {
   width: 0;
   height: 0;
   border-style: solid;
@@ -145,22 +143,29 @@ section > section > .content > .carousel > div img {
   left: 11.5%; /* 11.5% 43% 74.5% */
 }
 
-.info-card > .info > .supertitle {
+/* .info > .info-carousel > .info-card > .supertitle { */
+.info-card {
+}
+
+.info-card > .supertitle {
   text-transform: uppercase;
   font-size: .7rem;
   font-weight: 600;
 }
 
-.info-card > .info > h2 {
+/* .info > .info-carousel > .info-card > h2 { */
+.info-card > h2 {
   font-weight: 300;
   font-size: 1.6rem;
   margin-top: .5rem;
+  margin-bottom: 1.7rem;
 }
 
-.info-card > .info > .byline {
+/* .info > .info-carousel > .info-card > .byline { */
+.info-card > .byline {
   text-transform: uppercase;
-  position: absolute;
-  bottom: 9%;
+  /* position: absolute; */
+  /* bottom: 9%; */
   color: #666;
   font-size: .9rem;
   font-style: oblique;
