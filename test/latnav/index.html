@@ -2,8 +2,10 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="assets/styles.css">
-    <link rel="stylesheet" type="text/css" href="assets/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="assets/slick.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <script type="text/javascript" src="http://use.typekit.net/kpa1bib.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
@@ -18,7 +20,7 @@
         </nav>
       </header>
 
-      <div id="editors-picks" class="owl-carousel">
+      <div id="editors-picks">
         <div class="latnav-card">
           <div class="content">
 
@@ -77,7 +79,7 @@
         </nav>
       </header>
 
-      <div id="upcoming-events" class="owl-carousel">
+      <div id="upcoming-events">
         <div class="latnav-card">
           <div class="content">
 
@@ -136,7 +138,7 @@
         </nav>
       </header>
 
-      <div id="from-the-shop" class="owl-carousel">
+      <div id="from-the-shop">
         <div class="latnav-card">
           <div class="content">
 
@@ -183,7 +185,7 @@
     </section>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="assets/owl.carousel.js"></script>
+    <script src="assets/slick.min.js"></script>
     <script>
       $(document).ready(function(){
         var carousels = ['#editors-picks', '#upcoming-events', '#from-the-shop'];
@@ -196,25 +198,23 @@
             enablePrev = function() {
               if (prevDisabled) {
                 $prev.removeClass('disabled');
+                prevDisabled = false;
 
                 $prev.click(function(event) {
                   event.preventDefault();
-                  $carousel.trigger('prev.owl.carousel');
+                  $carousel.slickPrev();
                 });
 
-                prevDisabled = false;
-
-                //$carousel.data()['owl.carousel'].settings.loop = true;
-                console.log($carousel.data()['owl.carousel']);
+                $carousel.slickSetOption('infinite', true, true);
               }
             },
             options = {
-              items: 1,
-              loop: true,
-              onDragged: enablePrev
+              infinite: false,
+              arrows: false,
+              onBeforeChange: enablePrev
             };
 
-          $carousel.owlCarousel(options);
+          $carousel.slick(options);
 
           $prev.click(function(event) {
             event.preventDefault();
@@ -222,7 +222,7 @@
 
           $next.click(function(event) {
             event.preventDefault();
-            $carousel.trigger('next.owl.carousel');
+            $carousel.slickNext();
             enablePrev();
           });
         });
