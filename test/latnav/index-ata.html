@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="assets/styles-ata.css">
+    <link rel="stylesheet" type="text/css" href="assets/slick.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script type="text/javascript" src="http://use.typekit.net/kpa1bib.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  </head>
+  <body>
+    <section class="tagged">
+      <header>
+        <h1>also tagged</h1>
+      </header>
+      <section>
+        <header>
+          <a class="expand closed" href="#"></a>
+          <h1>neato</h1>
+        </header>
+        <div class="content">
+          <div class="">
+            <div>
+              <a href="#"><img src="assets/square.jpg"></a>
+            </div>
+          </div>
+          <div class="info-card">
+          </div>
+        </div>
+      </section>
+      <section>
+        <header>
+          <a class="expand closed" href="#"></a>
+          <h1>so hip</h1>
+        </header>
+        <div class="content">
+          <div class="carousel">
+            <div>
+              <a href="#"><img src="assets/square.jpg"></a>
+            </div>
+            <div>
+              <a href="#"><img src="assets/square.jpg"></a>
+            </div>
+            <div>
+              <a href="#"><img src="assets/square.jpg"></a>
+            </div>
+            <div>
+              <a href="#"><img src="assets/square.jpg"></a>
+            </div>
+            <div>
+              <a href="#"><img src="assets/square.jpg"></a>
+            </div>
+            <div>
+              <a href="#"><img src="assets/square.jpg"></a>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="arrow"></div>
+            <div class="info">
+              <div class="supertitle">
+                hayes valley
+              </div>
+              <h2>New Exhibits Opening Reception</h2>
+              <div class="byline">
+                Weds. August 32nd<br />
+                8&ndash;11pm
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <header>
+          <a class="expand closed" href="#"></a>
+          <h1>your dad</h1>
+        </header>
+        <div class="content">
+          <div class="">
+            <div>
+              <a href="#"><img src="assets/square.jpg"></a>
+            </div>
+          </div>
+          <div class="info-card">
+          </div>
+        </div>
+      </section>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="assets/slick.min.js"></script>
+    <script>
+      $(document).ready(function(){
+          var options = {
+              infinite: true,
+              swipeToSlide: true,
+              slidesToShow: 3,
+              onAfterChange: function() {
+                console.log($('.carousel').slickCurrentSlide());
+              }
+            };
+
+          $('a.expand').click(function(event) {
+            event.preventDefault();
+
+            var $el = $(this);
+            var $content = $el.parent().siblings('.content');
+
+            if ($el.hasClass('closed')) {
+              $el.addClass('open');
+              $el.removeClass('closed');
+              $content.show();
+              $('.carousel').slick(options);
+            } else {
+              $el.addClass('closed');
+              $el.removeClass('open');
+              $content.hide();
+              $('.carousel').unslick();
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
