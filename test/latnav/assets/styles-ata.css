@@ -26,6 +26,10 @@ html, body {
   font-size: 16px;
 }
 
+section + section {
+  margin-top: 2rem;
+}
+
 section > header {
   background: #282828;
   color: white;
@@ -38,9 +42,8 @@ section > header > h1 {
   text-transform: uppercase;
   font-size: 1rem;
   line-height: 3rem;
-  width: 50%;
-  text-align: center;
   letter-spacing: 1px;
+  margin-left: 2rem;
 }
 
 section > section {
@@ -94,18 +97,40 @@ section > section > .content > .carousel:after {
   clear: both;
 }
 
-section > section > .content > .carousel {
+section.tagged.events > section > .content > .carousel {
   padding-left: 1rem;
 }
 
-section > section > .content > .carousel > div {
+section.tagged.events > section > .content > .carousel > div {
   margin-top: .6rem;
   margin-bottom: .6rem;
 }
+
+section.tagged.articles > section > .content > .carousel > div {
+  margin-top: 1.3rem;
+  background-color: #eaeaea;
+}
+
 section > section > .content > .carousel > div img {
+  cursor: pointer;
+}
+
+section.tagged.events > section > .content > .carousel > div img {
   border-radius: 50%;
   width: 80%;
-  cursor: pointer;
+}
+section.tagged.articles > section > .content img {
+  transition: border .5s ease;
+}
+section.tagged.articles > section > .content img {
+  border: .4rem solid #eaeaea;
+}
+section.tagged.articles > section > .content div.slick-slide.active > img {
+  border: .4rem solid #ec008c;
+}
+
+section.tagged.articles .info {
+  margin-top: 0;
 }
 
 .info {
