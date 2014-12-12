@@ -108,6 +108,7 @@ section.tagged.events > section > .content > .carousel > div {
 
 section.tagged.articles > section > .content > .carousel > div {
   margin-top: 1.3rem;
+  margin-bottom: .3rem;
   background-color: #eaeaea;
 }
 
@@ -119,19 +120,14 @@ section.tagged.events > section > .content > .carousel > div img {
   border-radius: 50%;
   width: 80%;
 }
-section.tagged.articles > section > .content img {
-  transition: border .5s ease;
-}
+
 section.tagged.articles > section > .content img {
   border: .4rem solid #eaeaea;
 }
-section.tagged.articles > section > .content div.slick-slide.active > img {
-  border: .4rem solid #ec008c;
-}
 
-section.tagged.articles .info {
-  margin-top: 0;
-}
+/* section.tagged.articles .info { */
+/*   margin-top: 0; */
+/* } */
 
 .info {
   position: relative;
