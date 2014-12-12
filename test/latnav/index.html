@@ -134,6 +134,51 @@
 
             <div class="info">
               <div class="supertitle">dogpatch</div>
+              <h2>-2 Mixed Tape Animals</h2>
+              <div class="price-string">$20</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">dogpatch</div>
+              <h2>-1 Mixed Tape Animals</h2>
+              <div class="price-string">$20</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">dogpatch</div>
+              <h2>0 Mixed Tape Animals</h2>
+              <div class="price-string">$20</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">dogpatch</div>
               <h2>1 Mixed Tape Animals</h2>
               <div class="price-string">$20</div>
             </div>
@@ -226,6 +271,48 @@
 
           </div>
         </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <h2>4 SF Map Scarf</h2>
+              <div class="price-string">$100</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <h2>5 SF Map Scarf</h2>
+              <div class="price-string">$100</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <h2>6 SF Map Scarf</h2>
+              <div class="price-string">$100</div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
 
@@ -239,40 +326,15 @@
           var $carousel = $(c),
             $prev = $carousel.parent().find('.prev'),
             $next = $carousel.parent().find('.next'),
-            prevDisabled = true,
-            enablePrev = function() {
-              if (prevDisabled) {
-                $prev.removeClass('disabled');
-                prevDisabled = false;
-
-                $prev.click(function(event) {
-                  event.preventDefault();
-                  $carousel.slickPrev();
-                });
-
-                $carousel.slickSetOption('infinite', true, true);
-              }
-            },
             options = {
               infinite: false,
-              arrows: true,
               speed: 170,
+              arrows: true,
               prevArrow: $prev,
               nextArrow: $next,
-              // onBeforeChange: enablePrev
             };
 
           $carousel.slick(options);
-
-          // $prev.click(function(event) {
-            // event.preventDefault();
-          // });
-
-          // $next.click(function(event) {
-            // event.preventDefault();
-            // $carousel.slickNext();
-            // enablePrev();
-          // });
         });
       });
     </script>
