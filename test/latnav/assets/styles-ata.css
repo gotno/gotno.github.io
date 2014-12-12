@@ -120,14 +120,16 @@ section.tagged.events > section > .content > .carousel > div img {
   border-radius: 50%;
   width: 80%;
 }
-
+section > section > .content img {
+  transition: opacity .5s ease;
+  opacity: 0.6;
+}
+section > section > .content div.slick-slide.active > img {
+  opacity: 1;
+}
 section.tagged.articles > section > .content img {
   border: .4rem solid #eaeaea;
 }
-
-/* section.tagged.articles .info { */
-/*   margin-top: 0; */
-/* } */
 
 .info {
   position: relative;
