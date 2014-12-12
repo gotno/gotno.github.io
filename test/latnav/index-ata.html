@@ -15,10 +15,12 @@
         <h1>also tagged (events)</h1>
       </header>
       <section>
-        <header>
-          <a class="expand closed" href="#"></a>
-          <h1>neato</h1>
-        </header>
+        <a href="#" class="expand">
+          <header>
+            <span href="#"></span>
+            <h1>neato</h1>
+          </header>
+        </a>
         <div class="content">
           <div class="carousel">
             <div class="active">
@@ -108,10 +110,12 @@
         </div>
       </section>
       <section>
-        <header>
-          <a class="expand closed" href="#"></a>
-          <h1>so hip</h1>
-        </header>
+        <a href="#" class="expand">
+          <header>
+            <span href="#"></span>
+            <h1>so hip</h1>
+          </header>
+        </a>
         <div class="content">
           <div class="carousel">
             <div class="active">
@@ -201,10 +205,12 @@
         </div>
       </section>
       <section>
-        <header>
-          <a class="expand closed" href="#"></a>
-          <h1>your dad</h1>
-        </header>
+        <a href="" class="expand">
+          <header>
+            <span href="#"></span>
+            <h1>your dad</h1>
+          </header>
+        </a>
         <div class="content">
           <div class="carousel">
             <div class="active">
@@ -300,10 +306,12 @@
         <h1>also tagged (articles)</h1>
       </header>
       <section>
-        <header>
-          <a class="expand closed" href="#"></a>
-          <h1>hilarious puppies</h1>
-        </header>
+        <a href="" class="expand">
+          <header>
+            <span href="#"></span>
+            <h1>hilarious puppies</h1>
+          </header>
+        </a>
         <div class="content">
           <div class="carousel">
             <div class="active">
@@ -393,10 +401,12 @@
         </div>
       </section>
       <section>
-        <header>
-          <a class="expand closed" href="#"></a>
-          <h1>salt</h1>
-        </header>
+        <a href="" class="expand">
+          <header>
+            <span href="#"></span>
+            <h1>salt</h1>
+          </header>
+        </a>
         <div class="content">
           <div class="carousel">
             <div class="active">
@@ -486,10 +496,12 @@
         </div>
       </section>
       <section>
-        <header>
-          <a class="expand closed" href="#"></a>
-          <h1>much wow</h1>
-        </header>
+        <a href="" class="expand">
+          <header>
+            <span href="#"></span>
+            <h1>much wow</h1>
+          </header>
+        </a>
         <div class="content">
           <div class="carousel">
             <div class="active">
@@ -588,31 +600,33 @@
           $('a.expand').click(function(event) {
             event.preventDefault();
 
-            var $el = $(this);
-            var $content = $el.parent().siblings('.content');
+            var $nav = $(this).find('span');
+            var $content = $(this).siblings('.content');
             var $carousel = $content.find('.carousel');
             var $infoCarousel = $content.find('.info-carousel');
 
-            var options = {
-                infinite: true,
-                swipeToSlide: true,
-                slidesToShow: 3,
-                speed: 300,
-                asNavFor: $infoCarousel,
-                focusOnSelect: true,
-                onBeforeChange: function(slick, curIdx, targetIdx) {
-                  var slides = $content.find('div.slick-slide');
-                  slides.removeClass('active');
+            var itemOpacityHandler = function (slick, curIdx, targetIdx) {
+              var slides = $content.find('div.slick-slide');
+              slides.removeClass('active');
 
-                  var slideIdx = null;
-                  var $slide = null;
-                  slides.each(function(idx, slide) {
-                    $slide = $(slide);
-                    slideIdx = parseInt($slide.attr('index'));
-                    if (slideIdx == targetIdx) $slide.addClass('active');
-                  });
-                }
-              };
+              var slideIdx = null;
+              var $slide = null;
+              slides.each(function(idx, slide) {
+                $slide = $(slide);
+                slideIdx = parseInt($slide.attr('index'));
+                if (slideIdx == targetIdx) $slide.addClass('active');
+              });
+            }
+
+            var options = {
+              infinite: true,
+              swipeToSlide: true,
+              slidesToShow: 3,
+              speed: 300,
+              asNavFor: $infoCarousel,
+              focusOnSelect: true,
+              onBeforeChange: itemOpacityHandler
+            };
 
             var infoOptions = {
               arrows: false,
@@ -620,18 +634,16 @@
               asNavFor: $carousel
             };
 
-            if ($el.hasClass('closed')) {
-              $el.addClass('open');
-              $el.removeClass('closed');
-              $content.show();
-              $carousel.slick(options);
-              $infoCarousel.slick(infoOptions);
-            } else {
-              $el.addClass('closed');
-              $el.removeClass('open');
+            if ($nav.hasClass('open')) {
+              $nav.removeClass('open');
               $content.hide();
               $carousel.unslick();
               $infoCarousel.unslick();
+            } else {
+              $nav.addClass('open');
+              $content.show();
+              $carousel.slick(options);
+              $infoCarousel.slick(infoOptions);
             }
           });
       });
