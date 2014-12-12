@@ -15,12 +15,57 @@
         <h1>editor's picks</h1>
 
         <nav>
-          <a href="" class="prev disabled"></a>
-          <a id="next" href="" class="next"></a>
+          <a href="" class="prev"></a>
+          <a href="" class="next"></a>
         </nav>
       </header>
 
       <div id="editors-picks">
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>2 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>3 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="latnav-card">
+          <div class="content">
+
+            <div class="image">
+              <img src="assets/square.jpg">
+            </div>
+
+            <div class="info">
+              <div class="supertitle">crime + safety</div>
+              <h2>4 places to picnic that aren't Delores Park</h2>
+              <div class="byline"><em>by </em>wendy steiner</div>
+            </div>
+
+          </div>
+        </div>
         <div class="latnav-card">
           <div class="content">
 
@@ -74,8 +119,8 @@
         <h1>upcoming events</h1>
 
         <nav>
-          <a href="" class="prev disabled"></a>
-          <a id="next" href="" class="next"></a>
+          <a href="" class="prev"></a>
+          <a href="" class="next"></a>
         </nav>
       </header>
 
@@ -133,8 +178,8 @@
         <h1>from the shop</h1>
 
         <nav>
-          <a href="" class="prev disabled"></a>
-          <a id="next" href="" class="next"></a>
+          <a href="" class="prev"></a>
+          <a href="" class="next"></a>
         </nav>
       </header>
 
@@ -210,22 +255,24 @@
             },
             options = {
               infinite: false,
-              arrows: false,
+              arrows: true,
               speed: 170,
-              onBeforeChange: enablePrev
+              prevArrow: $prev,
+              nextArrow: $next,
+              // onBeforeChange: enablePrev
             };
 
           $carousel.slick(options);
 
-          $prev.click(function(event) {
-            event.preventDefault();
-          });
+          // $prev.click(function(event) {
+            // event.preventDefault();
+          // });
 
-          $next.click(function(event) {
-            event.preventDefault();
-            $carousel.slickNext();
-            enablePrev();
-          });
+          // $next.click(function(event) {
+            // event.preventDefault();
+            // $carousel.slickNext();
+            // enablePrev();
+          // });
         });
       });
     </script>

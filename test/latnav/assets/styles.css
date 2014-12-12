@@ -74,7 +74,11 @@ section > header > nav > .next:last-child {
   border-left: 1px solid #282828;
 }
 
-section > header > nav > a.disabled {
+section > header > nav > a.slick-disabled {
+  transition: all .25s ease;
+}
+
+section > header > nav > a.slick-disabled {
   background: #9e1064;
   color: #d89fc1;
   cursor: default;
