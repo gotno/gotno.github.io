@@ -14,6 +14,9 @@
 
         $touchme.on('mouseup touchend touchcancel', function(event) {
           $p.html(event.type + ', yo.');
+          window.setInterval(function() {
+            $p.html('');
+          }, 800);
         });
       });
     </script>
