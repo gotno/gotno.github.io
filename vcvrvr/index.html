@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vcvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvr</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/vcvrvr.css">
+  </head>
+  <body>
+    <h1><span class="ul">vcvrvr</span>(vrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvrvr)</h1>
+
+    <section>
+      <div class="caption">
+        this is the record of an ongoing attempt to build a bridge between VCV Rack
+        and Unreal Engine, with the ultimate goal of supporting enough of VCV Rack's
+        functionality to provide a meaningful experience via a VR interface.
+      </div>
+
+      <div class="copy columns">
+        <p>i’ve been interested in modular synthesis for a long time and recently came dangerously close to dropping a bunch of money on hardware, but i had no experience and didn’t really know what i wanted, other than knobs to twist and cables to socket in. so i found SynthVR, and a little while later, Synthspace, and learned a ton and had a lot of fun, but eventually ran up against frustration at the limited palette of available modules and the fact that, while they both had plans to allow custom, user-created modules, neither has been updated in over two years. the developers are still kicking around on the associated discords, but the programs seem to be effectively abandonware.</p>
+        <p>why not just use VCVRack as-is? a huge part of the appeal of modular synths to me is their physicality. and outside of spending thousands of dollars on hardware, VR is the best way to get that. when i put on my headset, i’m instantly isolated in a private studio with no distractions, and i can twiddle knobs and push buttons and swap cables to my heart’s content. i don’t need another reason to sit in front of a computer poking at things with a mouse.</p>
+        <p>i’m a web developer, professionally, with a lot of experience in Ruby and Javascript. i spent a couple months learning the basics of C++ dev in Unreal Engine, but that is very much an Epic-flavored version of C++, so i spent another month poking around the VCVRack code and learning the C++ standard library. i don’t have a ton of time for this stuff, maybe 30-60 minutes daily, a few hours on the weekend.</p>
+        <p>i have a long list of open questions, a lot of ideas for how to handle different things, and no clear picture as to how feasible any of this is going to end up being. but i’m taking it a piece at a time, just enjoying the journey and the learning experience.</p>
+        <p>
+          the way i see it there are only three things stopping me:
+        </p>
+        <ul>
+          <li>i don’t really know c++</li>
+          <li>i don’t really know game development</li>
+          <li>i’ve never really used vcvrack</li>
+        </ul>
+        <p>
+          so, no problem. let's go.
+        </p>
+      </div>
+
+
+      <div class="visual">
+        <a href="img/PXL_20230302_170543700.jpg" target="_blank">
+          <img src="img/PXL_20230302_170543700.jpg" />
+        </a>
+        <div class="caption">
+          after a month or so of reading through rack's source and poking at things to see what came out, i felt about the way heimdall looks here. big <span class="ital">no idea dog</span> energy.
+        </div>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVR.png" target="_blank">
+          <img src="img/VCVRVR.png" />
+        </a>
+        <div class="caption">
+          the first real demonstration of communication between rack and unreal that wasn't just debug statements in the console: data necessary to reproduce modules + cabling being sent over to Unreal, and drawn in the engine with debug lines.
+        </div>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-04-23 220826.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-04-23 220826.png" />
+        </a>
+        <div class="caption">
+          starting to get the lights working.
+        </div>
+      </div>
+
+      <div class="visual">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/GLOPNv3pmpA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="caption">
+          the lights, they are a-blinkin'
+        </div>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-04-29 230530.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-04-29 230530.png" />
+        </a>
+        <div class="caption">
+          the very beginning of replacing the debug lines with proper geometry
+        </div>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-06-07 090029.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-06-07 090029.png" />
+        </a>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-06-07 132212.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-06-07 132212.png" />
+        </a>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-06-24 220549.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-06-24 220549.png" />
+        </a>
+        <div class="caption">
+          adding some simple geometry sketches for the params and ports so i can work on actually interacting with them. these will soon be replaced with simpler models i can paint the svg graphics on.
+        </div>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-06-27 193430.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-06-27 193430.png" />
+        </a>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-06-27 193458.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-06-27 193458.png" />
+        </a>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-06-28 140701.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-06-28 140701.png" />
+        </a>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-06-28 183135.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-06-28 183135.png" />
+        </a>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-06-29 215450.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-06-29 215450.png" />
+        </a>
+        <div class="caption">
+          things go amusingly wrong as i figure out how to attach <span class="ital">things</span> to <span class="ital">other things</span> in unreal.
+        </div>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-07-07 112818.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-07-07 112818.png" />
+        </a>
+        <div class="caption">
+          an attempt was made, and then promptly shelved, to position the modules the same as they're positioned in rack. avoiding the body horror for now, i decide to come back to this later.
+        </div>
+      </div>
+
+      <div class="visual">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/M0O0C6xliiI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="caption">
+          another month of work, and you can actually interact with the things! this is the first point where it starts to feel like i might actually be able to make this work, for some value of work.
+        </div>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-07-12 102511.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-07-12 102511.png" />
+        </a>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-07-12 121338.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-07-12 121338.png" />
+        </a>
+        <div class="caption">
+          first demonstration that it is, in fact, possible to get unreal to render svg graphics (using <a href="https://www.unrealengine.com/marketplace/en-US/product/definitive-painter" target="_blank">this lovely plugin</a>).
+        </div>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-07-13 115645.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-07-13 115645.png" />
+        </a>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-07-13 121126.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-07-13 121126.png" />
+        </a>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-07-13 224245.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-07-13 224245.png" />
+        </a>
+        <div class="caption">
+          starting to paint those svgs on the modules.
+        </div>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-07-21 220341.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-07-21 220341.png" />
+        </a>
+        <div class="caption">
+          everything is going fine!
+        </div>
+      </div>
+
+      <div class="visual">
+        <a href="img/VCVRVRScreenshot 2023-07-28 085328.png" target="_blank">
+          <img src="img/VCVRVRScreenshot 2023-07-28 085328.png" />
+        </a>
+        <div class="caption">
+          getting svgs painted on all the knobs and other params and ports. it was at this point that i began to realize that the plugin i'm using is designed to create UI widgets, and having a separate UI widget for every single thing is very very bad for perforamance.
+        </div>
+      </div>
+
+      <div class="visual">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/rgIItzmNW9Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="caption">
+          after another few weeks on the struggle bus, i come up with a strategy: i create a single surrogate widget for each svg i need to render, steal the texture it uses under the hood, and then kill the surrogate. finally, all the graphics are in place, or at least the ones that aren't dynamically drawn. gods only know if i'll ever figure out how to make that work.
+         </div>
+      </div>
+    </section>
+  </body>
+</html>

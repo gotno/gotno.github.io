@@ -1,0 +1,136 @@
+html {
+  --mobile-width: 600px;
+}
+body {
+  width: 100%;
+
+  font-family: "Open Sans";
+  color: #333;
+}
+
+h1 {
+  padding-left: 20%;
+  margin: 6rem 0 1rem;
+  width: 100%;
+  overflow: hidden;
+
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 0.15rem;
+  white-space: nowrap;
+}
+h1 > span.ul {
+  display: inline-block;
+  border-bottom: 2px solid cyan;
+  padding-right: 2rem;
+}
+
+section {
+  width: 100%;
+  /* background-color: deeppink; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 600px) {
+  section {
+    width: calc(100% - 2em);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+section > .visual {
+  width: 80%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section > .visual + .visual {
+  margin-top: 2em;
+}
+
+section > .visual img {
+  max-width: 100%;
+  max-height: calc(100vh - 2em);
+}
+section > .visual > .caption {
+  width: 60%;
+  padding: 1.5rem;
+  line-height: 1.5 rem;
+
+  border: 1px solid cyan;
+  border-radius: 0.5em;
+
+  margin: 1rem 0 2rem;
+}
+@media (max-width: 600px) {
+  section > .visual {
+    width: 100%;
+  }
+  section > .visual img {
+    max-height: revert;
+  }
+  section > .visual > .caption {
+    width: 80%;
+  }
+}
+
+section > .caption {
+  width: 40%;
+  padding: 1.5rem;
+  line-height: 1.5rem;
+
+  border: 1px solid cyan;
+  border-radius: 0.5em;
+
+  margin: 2rem 0;
+}
+@media (max-width: 600px) {
+  section > .caption {
+    width: 80%;
+  }
+}
+
+span.ital {
+  font-style: italic;
+}
+
+section > .copy {
+  margin: 2rem 0;
+}
+section > .copy.columns {
+  width: 60%;
+  columns: 3;
+}
+@media (max-width: 600px) {
+  section > .copy.columns {
+    columns: 1;
+  }
+}
+section > .copy > p {
+  padding-left: 1rem;
+  border-left: 1px solid cyan;
+  text-align: justify;
+}
+section > .copy > p + p {
+  margin-top: 1rem;
+}
+
+.copy ul {
+  padding: 1rem 0 1rem 2rem;
+  border-left: 1px solid cyan;
+}
+.copy ul > li {
+  line-height: 1.5rem;
+  list-style-type: circle;
+}
+
+@media (max-width: 600px) {
+  iframe {
+    width: 90%;
+  }
+}
