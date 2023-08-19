@@ -64,6 +64,9 @@ section > .visual > .caption {
 
   margin: 1rem 0 2rem;
 }
+section > .visual > .caption.center {
+  text-align: center;
+}
 @media (max-width: 666px) {
   section > .visual {
     width: 100%;
